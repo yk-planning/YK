@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ＹＫプランニング | AI-Driven Full-Stack Dev & Audio Engineering</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .gradient-text {
+      background: linear-gradient(135deg, #60A5FA 0%, #F472B6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      background: #EC4899;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-pink-500 selection:text-white">
+
+  <header class="fixed w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#" class="text-xl font-bold tracking-wider gradient-text">ＹＫプランニング</a>
+      <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-400">
+        <a href="#about" class="hover:text-white transition">About</a>
+        <a href="#services" class="hover:text-white transition">Services</a>
+        <a href="#works" class="hover:text-white transition">Works</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="relative min-h-screen flex items-center justify-center pt-16 px-6 overflow-hidden">
+    <canvas id="visualizerCanvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-40"></canvas>
+    
+    <div class="relative z-10 text-center max-w-3xl pointer-events-auto">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest text-pink-400 bg-pink-500/10 rounded-full border border-pink-500/20">
+        <span class="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
+        AI-DRIVEN DEV × DTM AUDIO
+      </div>
+      <h1 class="text-4xl sm:text-7xl font-extrabold mb-6 tracking-tight leading-tight">
+        Crafting <span class="gradient-text">Code & Sound.</span>
+      </h1>
+      <p class="text-slate-400 text-base sm:text-xl mb-10 leading-relaxed max-w-2xl mx-auto">
+        AIペアプログラミングによる超高速・高品質なフルスタック開発と、DTM・音響制作のクリエイティビティを融合。<br class="hidden sm:inline">
+        Webサービス構築から音源プロデュースまで一気通貫で手掛けます。
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#works" class="inline-flex items-center justify-center px-8 py-3.5 text-base font-medium rounded-xl text-white bg-gradient-to-r from-blue-600 to-pink-600 hover:opacity-90 transition shadow-lg shadow-pink-500/20">
+          実績・音源を聴く
+        </a>
+        <a href="#contact" class="inline-flex items-center justify-center px-8 py-3.5 text-base font-medium rounded-xl text-slate-300 bg-slate-900 border border-slate-700 hover:bg-slate-800 hover:text-white transition">
+          お問い合わせ
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-24 bg-slate-900/50 border-y border-slate-800/50 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">Services</h2>
+        <p class="text-slate-400 text-sm sm:text-base">最新のAI技術を活用した開発から音響制作、自社プロダクト運用まで多角的に対応</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition duration-300 group">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-6 font-mono text-xl group-hover:scale-110 transition">⚡</div>
+          <h3 class="text-xl font-bold mb-3">AI-Driven Development</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            LLM・AIツールを開発プロセスへ高度に組込み、圧倒的なスピードと品質でフロント〜バックエンド・DB・インフラまでを設計・実装します。
+          </p>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-pink-500/50 transition duration-300 group">
+          <div class="w-12 h-12 rounded-xl bg-pink-500/10 text-pink-400 flex items-center justify-center mb-6 text-xl group-hover:scale-110 transition">♪</div>
+          <h3 class="text-xl font-bold mb-3">DTM / Sound Production</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Webコンテンツ、アプリ、映像、ゲーム向けのオリジナルBGM・効果音（SE）制作。ミキシング・マスタリングから音響デザインまで幅広く対応可能です。
+          </p>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-purple-500/50 transition duration-300 group">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center mb-6 text-xl group-hover:scale-110 transition">🚀</div>
+          <h3 class="text-xl font-bold mb-3">Service Operations</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            自社プロダクトの企画、開発、運用ノウハウを活かしたWebサービスの改善運用・システム保守およびプロトタイプ構築をサポートします。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="works" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">Works & Audio Showcase</h2>
+        <p class="text-slate-400 text-sm sm:text-base">開発プロダクトおよびDTM制作サンプル音源</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        
+        <div class="bg-slate-900 rounded-2xl p-6 sm:p-8 border border-slate-800">
+          <div class="flex items-center justify-between mb-6">
+            <span class="text-xs font-semibold px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20">Web Product</span>
+            <a href="https://datecolle.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-slate-400 hover:text-white flex items-center gap-1 transition">
+              datecolle.com ↗
+            </a>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">デトコレ（datecolle.com）</h3>
+          <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+            ＹＫプランニングが開発・運営を手掛ける自社Webプラットフォーム。インフラの選定からフロント/バックエンド実装、UI/UXデザインまで自社で完結しています。
+          </p>
+          <a href="https://datecolle.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition">
+            サイトを訪問する ➔
+          </a>
+        </div>
+
+        <div class="bg-slate-900 rounded-2xl p-6 sm:p-8 border border-slate-800">
+          <div class="flex items-center justify-between mb-6">
+            <span class="text-xs font-semibold px-3 py-1 bg-pink-500/10 text-pink-400 rounded-full border border-pink-500/20">DTM Sound Demo</span>
+            <span class="text-xs text-slate-400">WAV Audio Player</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">制作サンプル音源</h3>
+          <p class="text-slate-400 text-sm mb-6">
+            オリジナル楽曲のサンプル音源を試聴いただけます。
+          </p>
+          
+          <div class="bg-slate-950 rounded-xl p-5 border border-slate-800">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <p id="nowPlayingTitle" class="text-sm font-bold text-slate-200">01. 打ち上げなかった言葉</p>
+                <p id="nowPlayingGenre" class="text-xs text-slate-500">Original Track / DTM</p>
+              </div>
+              <button id="playBtn" class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-pink-500 flex items-center justify-center text-white shadow-lg hover:scale-105 transition">
+                <span id="playIcon">▶</span>
+              </button>
+            </div>
+
+            <div class="space-y-1 mb-6">
+              <input type="range" id="progressBar" value="0" max="100" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-pink-500">
+              <div class="flex justify-between text-[10px] text-slate-500 font-mono">
+                <span id="currentTime">00:00</span>
+                <span id="duration">00:00</span>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <p class="text-xs font-semibold text-slate-400 mb-2">トラックリスト</p>
+              
+              <button class="track-item w-full text-left p-3 rounded-lg border border-slate-800 bg-slate-900/50 hover:bg-slate-800 transition flex items-center justify-between group active-track" 
+                      data-src="audio/sample1.wav" data-title="01. 打ち上げなかった言葉" data-genre="Original Track / DTM">
+                <span class="text-xs text-slate-300 group-hover:text-white">01. 打ち上げなかった言葉</span>
+                <span class="text-[10px] text-slate-500 font-mono">WAV</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-24 bg-slate-900/50 border-t border-slate-800/50 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Contact</h2>
+      <p class="text-slate-400 text-sm sm:text-base mb-10">システム開発のご相談、楽曲・音源制作のご依頼などお気軽にお問い合わせください。</p>
+      
+      <div class="w-full bg-slate-900 rounded-2xl p-2 sm:p-4 border border-slate-800 shadow-2xl">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfjxAR2EQbN9IdRzdDU4X2DMDxz-UzfdP3el95dJaTyAYAxCw/viewform?embedded=true" width="640" height="691" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 border-t border-slate-800 text-center text-xs text-slate-500">
+    <p>&copy; 2026 ＹＫプランニング. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Audio Player Logic
+    const audio = new Audio();
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+    const progressBar = document.getElementById('progressBar');
+    const currentTimeEl = document.getElementById('currentTime');
+    const durationEl = document.getElementById('duration');
+    const nowPlayingTitle = document.getElementById('nowPlayingTitle');
+    const nowPlayingGenre = document.getElementById('nowPlayingGenre');
+    const trackItems = document.querySelectorAll('.track-item');
+
+    let isPlaying = false;
+
+    // Load first track by default
+    if (trackItems.length > 0) {
+      const firstTrack = trackItems[0];
+      audio.src = firstTrack.dataset.src;
+      nowPlayingTitle.textContent = firstTrack.dataset.title;
+      nowPlayingGenre.textContent = firstTrack.dataset.genre;
+      firstTrack.classList.add('border-pink-500/50', 'bg-slate-800');
+    }
+
+    function formatTime(seconds) {
+      if (isNaN(seconds)) return '00:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    playBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play().catch(e => console.log('Audio playback waiting for user interaction'));
+      }
+    });
+
+    audio.addEventListener('play', () => {
+      isPlaying = true;
+      playIcon.textContent = '❚❚';
+    });
+
+    audio.addEventListener('pause', () => {
+      isPlaying = false;
+      playIcon.textContent = '▶';
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      if (audio.duration) {
+        const progress = (audio.currentTime / audio.duration) * 100;
+        progressBar.value = progress;
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+        durationEl.textContent = formatTime(audio.duration);
+      }
+    });
+
+    progressBar.addEventListener('input', () => {
+      if (audio.duration) {
+        audio.currentTime = (progressBar.value / 100) * audio.duration;
+      }
+    });
+
+    trackItems.forEach(item => {
+      item.addEventListener('click', () => {
+        trackItems.forEach(t => t.classList.remove('border-pink-500/50', 'bg-slate-800'));
+        item.classList.add('border-pink-500/50', 'bg-slate-800');
+
+        audio.src = item.dataset.src;
+        nowPlayingTitle.textContent = item.dataset.title;
+        nowPlayingGenre.textContent = item.dataset.genre;
+        audio.play();
+      });
+    });
+
+    // Canvas Audio Visualizer Background
+    const canvas = document.getElementById('visualizerCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    let bars = [];
+    const numBars = 64;
+
+    for (let i = 0; i < numBars; i++) {
+      bars.push({
+        height: Math.random() * 100,
+        speed: 0.02 + Math.random() * 0.03,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+
+    function drawVisualizer() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const barWidth = canvas.width / numBars;
+      const centerY = canvas.height / 2;
+      const intensity = isPlaying ? 2.2 : 0.8;
+
+      for (let i = 0; i < numBars; i++) {
+        const bar = bars[i];
+        bar.phase += bar.speed * (isPlaying ? 1.8 : 1.0);
+        
+        const currentHeight = (Math.abs(Math.sin(bar.phase)) * (canvas.height * 0.2) + 10) * intensity;
+        const x = i * barWidth;
+        
+        const gradient = ctx.createLinearGradient(0, centerY - currentHeight, 0, centerY + currentHeight);
+        gradient.addColorStop(0, '#3B82F6');
+        gradient.addColorStop(0.5, '#8B5CF6');
+        gradient.addColorStop(1, '#EC4899');
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(x + 2, centerY - currentHeight / 2, barWidth - 4, currentHeight);
+      }
+
+      requestAnimationFrame(drawVisualizer);
+    }
+
+    drawVisualizer();
+  </script>
+</body>
+</html>
