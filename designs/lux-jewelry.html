@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison VÉLINE | Fine Jewelry（デザインサンプル）</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --night: #0f1420;
+      --night-2: #161c2b;
+      --champagne: #dcc7a1;
+      --pearl: #f4f1ec;
+      --mist: #9aa0ad;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Noto Serif JP', serif; font-weight: 300; background: var(--pearl); color: var(--night); line-height: 2; letter-spacing: .05em; }
+    a { color: inherit; text-decoration: none; }
+    .en { font-family: 'Bodoni Moda', serif; }
+
+    .topbar { background: var(--night); color: var(--champagne); text-align: center; font-size: 11px; letter-spacing: .3em; padding: 8px; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 22px 5vw; border-bottom: 1px solid #e3ddd3; background: var(--pearl); }
+    header nav { display: flex; gap: 30px; font-size: 12px; letter-spacing: .2em; }
+    header nav a { position: relative; }
+    header nav a::after { content: ""; position: absolute; left: 0; bottom: -4px; width: 0; height: 1px; background: var(--night); transition: width .4s; }
+    header nav a:hover::after { width: 100%; }
+    .logo { font-size: 30px; letter-spacing: .12em; }
+    .logo i { font-size: 16px; }
+
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 110px); }
+    .hero-text { padding: 0 6vw; display: flex; flex-direction: column; justify-content: center; }
+    .hero-text .sub { font-size: 12px; letter-spacing: .5em; color: #8a7a5c; margin-bottom: 24px; }
+    .hero-text h1 { font-size: clamp(46px, 5.6vw, 84px); font-weight: 400; line-height: 1.05; }
+    .hero-text h1 i { color: #a88a55; }
+    .hero-text p { margin: 32px 0 44px; font-size: 14px; color: #555b66; max-width: 420px; }
+    .btn { align-self: flex-start; background: var(--night); color: var(--pearl); padding: 16px 44px; font-size: 12px; letter-spacing: .35em; transition: .4s; }
+    .btn:hover { background: #a88a55; }
+    .hero-visual { position: relative; background: radial-gradient(circle at 50% 45%, #2a3350 0%, var(--night) 65%); display: grid; place-items: center; overflow: hidden; }
+    .hero-visual::before { content: ""; position: absolute; width: 70%; aspect-ratio: 1; border: 1px solid rgba(220,199,161,.25); border-radius: 50%; }
+    .hero-visual::after { content: ""; position: absolute; width: 50%; aspect-ratio: 1; border: 1px solid rgba(220,199,161,.15); border-radius: 50%; }
+    .hero-visual svg { position: relative; z-index: 1; width: 52%; filter: drop-shadow(0 20px 40px rgba(0,0,0,.5)); }
+    .sparkle { position: absolute; width: 6px; height: 6px; background: #fff; transform: rotate(45deg); box-shadow: 0 0 12px 3px rgba(255,255,255,.6); }
+
+    section { padding: 130px 6vw; }
+    .center { text-align: center; }
+    .eyebrow { font-size: 12px; letter-spacing: .5em; color: #a88a55; }
+    h2 { font-size: clamp(32px, 3.6vw, 50px); font-weight: 400; margin: 10px 0 60px; }
+
+    .collection { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    .piece { text-align: center; }
+    .piece .box { aspect-ratio: 4/5; background: #fff; display: grid; place-items: center; margin-bottom: 20px; position: relative; transition: box-shadow .5s; }
+    .piece:hover .box { box-shadow: 0 30px 60px -30px rgba(15,20,32,.35); }
+    .piece .box svg { width: 50%; }
+    .piece .tag { position: absolute; top: 14px; left: 14px; font-size: 10px; letter-spacing: .3em; color: #a88a55; }
+    .piece h3 { font-weight: 400; font-size: 18px; letter-spacing: .1em; }
+    .piece p { font-size: 12px; color: #7a7f8a; }
+
+    .atelier { background: var(--night); color: var(--pearl); display: grid; grid-template-columns: 1fr 1fr; gap: 8vw; align-items: center; }
+    .atelier p { color: #b9bdc7; font-size: 15px; max-width: 480px; margin-bottom: 1.5em; }
+    .atelier h2 { margin-bottom: 30px; }
+    .quote { border-left: 1px solid var(--champagne); padding-left: 32px; font-size: clamp(22px, 2.4vw, 34px); line-height: 1.6; color: var(--champagne); font-style: italic; }
+    .quote small { display: block; font-family: 'Noto Serif JP', serif; font-style: normal; font-size: 12px; color: var(--mist); margin-top: 18px; letter-spacing: .3em; }
+
+    .boutique { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #ddd6ca; border: 1px solid #ddd6ca; }
+    .boutique div { background: var(--pearl); padding: 44px 36px; }
+    .boutique h3 { font-weight: 400; font-size: 22px; margin-bottom: 8px; }
+    .boutique p { font-size: 13px; color: #666b75; }
+
+    footer { background: var(--night-2); color: var(--mist); padding: 40px 6vw; display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .1em; }
+
+    @media (max-width: 900px) {
+      header nav { display: none; }
+      .hero, .atelier { grid-template-columns: 1fr; }
+      .hero-text { padding: 70px 24px; }
+      .hero-visual { min-height: 420px; }
+      section { padding: 90px 24px; }
+      .collection { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .boutique { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 8px; }
+    }
+    .sns { display: flex; gap: 12px; justify-content: center; margin: 0 0 var(--sns-gap, 18px); }
+    .sns a { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid currentColor; border-radius: var(--sns-r, 50%); opacity: .7; transition: opacity .3s, transform .3s; }
+    .sns a:hover { opacity: 1; transform: translateY(-2px); }
+    .sns svg { width: 17px; height: 17px; }
+    footer { align-items: center; }
+    footer { --sns-gap: 0; }
+    /* ===== Motion: sparkle & shine ===== */
+    .sparkle { width: 28px; height: 28px; background: #fff; transform: none; box-shadow: none;
+      clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+      filter: drop-shadow(0 0 8px rgba(255,255,255,1)) drop-shadow(0 0 16px rgba(220,199,161,.8)); animation: twinkle 2.4s ease-in-out infinite; }
+    .sparkle:nth-of-type(2) { animation-delay: .8s; } .sparkle:nth-of-type(3) { animation-delay: 1.6s; }
+    @keyframes twinkle { 0%, 100% { opacity: 0; scale: .2; rotate: 0deg; } 50% { opacity: 1; scale: 1; rotate: 45deg; } }
+    .sparkle.spawned { position: absolute; z-index: 2; pointer-events: none; animation: twinkle 1.6s ease-in-out forwards; }
+    .ring { animation: ringFloat 6s ease-in-out infinite; }
+    @keyframes ringFloat { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-14px) rotate(2deg); } }
+    .dia-shine { animation: diaShine 3.2s ease-in-out infinite; }
+    @keyframes diaShine { 0%, 30% { transform: translateX(0) skewX(-20deg); } 100% { transform: translateX(110px) skewX(-20deg); } }
+    .band-shine { animation: bandShine 4.5s ease-in-out infinite 1s; }
+    @keyframes bandShine { 0%, 60% { transform: translateX(-20px); } 100% { transform: translateX(200px); } }
+    .facet { opacity: 0; animation: facet 3.2s ease-in-out infinite; }
+    .f2 { animation-delay: .8s; } .f3 { animation-delay: 1.6s; } .f4 { animation-delay: 2.4s; }
+    @keyframes facet { 0%, 100% { opacity: 0; } 40% { opacity: .75; } }
+    .hero-visual::before { animation: halo 5s ease-in-out infinite; }
+    .hero-visual::after { animation: halo 5s ease-in-out infinite 2.5s; }
+    @keyframes halo { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.06); opacity: .5; } }
+    .hero-text > * { opacity: 0; transform: translateY(24px); animation: rise 1.2s cubic-bezier(.2,.7,.2,1) forwards; }
+    .hero-text > :nth-child(2) { animation-delay: .2s; } .hero-text > :nth-child(3) { animation-delay: .45s; } .hero-text > :nth-child(4) { animation-delay: .7s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+    .piece .box { overflow: hidden; }
+    .piece .box::after { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.85), transparent); transform: skewX(-18deg); transition: left .9s ease; }
+    .piece:hover .box::after { left: 130%; }
+    .piece .box svg { transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+    .piece:hover .box svg { transform: scale(1.08) rotate(-4deg); }
+    .fade { opacity: 0; transform: translateY(30px); transition: opacity 1s ease, transform 1s ease; }
+    .fade.is-visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .sparkle, .ring, .dia-shine, .band-shine, .facet, .hero-visual::before, .hero-visual::after, .hero-text > * { animation: none; opacity: 1; transform: none; }
+      .facet { opacity: 0; }
+      .fade { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">全国送料無料 ／ 刻印・ギフトラッピング承ります</div>
+  <header>
+    <nav><a href="#collection">コレクション</a><a href="#atelier">アトリエ</a></nav>
+    <div class="logo en">Maison <i>VÉLINE</i></div>
+    <nav><a href="#boutique">ブティック</a><a href="#">ご来店予約</a></nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="sub en">BRIDAL COLLECTION 2026</div>
+      <h1 class="en">The light<br>you <i>promise</i>.</h1>
+      <p>ひと粒の光に、ふたりの約束を。熟練の職人が、指先の感覚だけを頼りに一点ずつ仕上げるブライダルリング。</p>
+      <a class="btn en" href="#collection">DISCOVER</a>
+    </div>
+    <div class="hero-visual">
+      <span class="sparkle" style="top:22%;left:28%"></span>
+      <span class="sparkle" style="top:30%;right:24%"></span>
+      <span class="sparkle" style="bottom:26%;left:36%"></span>
+      <svg class="ring" viewBox="0 0 200 220" aria-label="ダイヤモンドリングのイラスト">
+        <defs>
+          <linearGradient id="gold" x1="0" x2="1"><stop offset="0" stop-color="#b8975f"/><stop offset=".5" stop-color="#f0dcae"/><stop offset="1" stop-color="#a88a55"/></linearGradient>
+          <linearGradient id="dia" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#b8c6e0"/></linearGradient>
+          <linearGradient id="shineGrad" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+          <clipPath id="diaClip"><path d="M70 52 L84 34 L116 34 L130 52 L100 92 Z"/></clipPath>
+          <clipPath id="bandClip"><path d="M100 88 a62 62 0 1 1 -0.1 0 Z M100 98 a52 52 0 1 0 0.1 0 Z" clip-rule="evenodd"/></clipPath>
+        </defs>
+        <ellipse cx="100" cy="150" rx="62" ry="62" fill="none" stroke="url(#gold)" stroke-width="10"/>
+        <g clip-path="url(#bandClip)"><rect class="band-shine" x="0" y="80" width="40" height="140" fill="url(#shineGrad)" opacity=".7"/></g>
+        <path d="M84 92 L100 80 L116 92 Z" fill="url(#gold)"/>
+        <path d="M70 52 L84 34 L116 34 L130 52 L100 92 Z" fill="url(#dia)"/>
+        <g clip-path="url(#diaClip)">
+          <path class="facet f1" d="M84 34 L92 52 L100 34 Z" fill="#fff"/>
+          <path class="facet f2" d="M100 34 L108 52 L116 34 Z" fill="#fff"/>
+          <path class="facet f3" d="M70 52 L92 52 L100 92 Z" fill="#dfe8ff"/>
+          <path class="facet f4" d="M108 52 L130 52 L100 92 Z" fill="#dfe8ff"/>
+          <rect class="dia-shine" x="40" y="20" width="22" height="90" fill="url(#shineGrad)"/>
+        </g>
+        <path d="M70 52 L130 52 M84 34 L92 52 L100 34 L108 52 L116 34 M92 52 L100 92 L108 52" stroke="#9fb0cf" stroke-width="1" fill="none"/>
+      </svg>
+    </div>
+  </div>
+
+  <section id="collection" class="center">
+    <div class="eyebrow en">COLLECTION</div>
+    <h2 class="en">Signature Pieces</h2>
+    <div class="collection">
+      <div class="piece"><div class="box"><span class="tag en">NEW</span><svg viewBox="0 0 100 100"><circle cx="50" cy="60" r="30" fill="none" stroke="#c9ab72" stroke-width="5"/><path d="M40 30 L50 20 L60 30 L50 42 Z" fill="#dfe6f2" stroke="#a9b7cf"/></svg></div><h3 class="en">Étoile</h3><p>Pt950 ／ 0.3ct　¥480,000</p></div>
+      <div class="piece"><div class="box"><svg viewBox="0 0 100 100"><path d="M20 30 Q50 90 80 30" fill="none" stroke="#c9ab72" stroke-width="2"/><circle cx="50" cy="62" r="7" fill="#f6f2ea" stroke="#d8cfbe"/></svg></div><h3 class="en">Perle</h3><p>K18 ／ あこや真珠　¥128,000</p></div>
+      <div class="piece"><div class="box"><svg viewBox="0 0 100 100"><circle cx="34" cy="50" r="10" fill="none" stroke="#c9ab72" stroke-width="3"/><circle cx="66" cy="50" r="10" fill="none" stroke="#c9ab72" stroke-width="3"/><circle cx="34" cy="64" r="4" fill="#dfe6f2"/><circle cx="66" cy="64" r="4" fill="#dfe6f2"/></svg></div><h3 class="en">Lune</h3><p>K18 ／ ピアス　¥96,000</p></div>
+      <div class="piece"><div class="box"><span class="tag en">LIMITED</span><svg viewBox="0 0 100 100"><ellipse cx="50" cy="56" rx="34" ry="14" fill="none" stroke="#c9ab72" stroke-width="5"/><g fill="#dfe6f2" stroke="#a9b7cf" stroke-width=".8"><circle cx="30" cy="48" r="4"/><circle cx="42" cy="44" r="4"/><circle cx="54" cy="43" r="4"/><circle cx="66" cy="45" r="4"/></g></svg></div><h3 class="en">Aurore</h3><p>Pt950 ／ エタニティ　¥620,000</p></div>
+    </div>
+  </section>
+
+  <section id="atelier" class="atelier">
+    <div>
+      <div class="eyebrow en">ATELIER</div>
+      <h2 class="en">Made by hand,<br>for a lifetime.</h2>
+      <p>銀座の路地裏に構えるアトリエでは、七名の職人がデザインから石留め、仕上げまでを一貫して手がけています。量産では出せない、指に沿うやわらかな曲線。それが Maison VÉLINE のリングです。</p>
+      <p>ご成約の方には、生涯無料のクリーニングとサイズ直しをお約束いたします。</p>
+    </div>
+    <div class="quote en">"A ring is not an accessory.<br>It is a memory you wear."<small>— 主任職人　白瀬 透</small></div>
+  </section>
+
+  <section id="boutique">
+    <div class="center"><div class="eyebrow en">BOUTIQUE</div><h2 class="en">Visit Us</h2></div>
+    <div class="boutique">
+      <div><h3 class="en">Ginza</h3><p>東京都中央区銀座 0-0-0（架空）<br>11:00〜20:00</p></div>
+      <div><h3 class="en">Omotesando</h3><p>東京都渋谷区神宮前 0-0-0（架空）<br>11:00〜20:00</p></div>
+      <div><h3 class="en">Online</h3><p>ビデオ通話でのご相談も承ります。<br>24時間ご予約受付</p></div>
+    </div>
+  </section>
+
+  <footer><nav class="sns" aria-label="SNS"><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7 8 10.3h-6.3l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.9 3h6.4l4.4 5.9L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg></a><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg></a><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4a2.5 2.5 0 0 0-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg></a></nav>
+    <span class="en">&copy; Maison VÉLINE</span>
+    <span>このページはＹＫプランニングのデザインサンプルです。ブランド・内容は架空のものです。</span>
+  </footer>
+
+  <script>
+    (() => {
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Random sparkles around the diamond
+      const visual = document.querySelector('.hero-visual');
+      if (visual && !reduce) {
+        setInterval(() => {
+          if (document.hidden) return;
+          const s = document.createElement('span');
+          s.className = 'sparkle spawned';
+          const size = 12 + Math.random() * 24;
+          s.style.width = s.style.height = `${size}px`;
+          s.style.left = `${30 + Math.random() * 40}%`;
+          s.style.top = `${18 + Math.random() * 34}%`;
+          s.addEventListener('animationend', () => s.remove());
+          visual.appendChild(s);
+        }, 280);
+      }
+
+      // Fade-in on scroll, staggered within a row
+      document.querySelectorAll('.piece, .boutique > div, .atelier > *, .center > h2').forEach((el) => el.classList.add('fade'));
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const sib = [...e.target.parentElement.children].filter((c) => c.classList.contains('fade'));
+          e.target.style.transitionDelay = `${Math.max(0, sib.indexOf(e.target)) * 0.15}s`;
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        });
+      }, { threshold: 0.2 });
+      document.querySelectorAll('.fade').forEach((el) => io.observe(el));
+    })();
+  </script>
+</body>
+</html>

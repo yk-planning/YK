@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>和菓子処 月白堂 | 季節の上生菓子（デザインサンプル）</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --shiro: #faf8f3;
+      --washi: #f1ece1;
+      --sumi: #3a3631;
+      --usuzumi: #8c857a;
+      --sakura: #e9b7bf;
+      --matcha: #9bb07a;
+      --kuri: #a8794f;
+      --ai: #6f8fae;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Zen Old Mincho', serif; background: var(--shiro); color: var(--sumi); line-height: 2; letter-spacing: .08em; }
+    a { color: inherit; text-decoration: none; }
+    .tate { writing-mode: vertical-rl; }
+
+    header { display: flex; justify-content: space-between; align-items: center; padding: 28px 6vw; }
+    .logo { display: flex; align-items: center; gap: 14px; font-size: 20px; font-weight: 900; letter-spacing: .3em; }
+    .logo .moon { width: 34px; height: 34px; border-radius: 50%; background: var(--washi); box-shadow: inset -8px -2px 0 #e2dccd; }
+    nav { display: flex; gap: 36px; font-size: 13px; color: var(--usuzumi); }
+    nav a:hover { color: var(--sumi); }
+
+    .hero { display: grid; grid-template-columns: 1.1fr 1fr; min-height: calc(100vh - 92px); padding: 0 6vw 60px; gap: 4vw; align-items: center; }
+    .hero-art { position: relative; aspect-ratio: 1; max-height: 620px; background: var(--washi); border-radius: 4px; display: grid; place-items: center; overflow: hidden; }
+    .hero-art::before { content: ""; position: absolute; width: 70%; aspect-ratio: 1; border-radius: 50%; background: #fff; box-shadow: 0 0 0 1px #e6e0d2; }
+    .hero-art svg { position: relative; width: 56%; }
+    .branch { position: absolute; top: 6%; right: -4%; width: 44% !important; }
+    .hero-copy { display: flex; flex-direction: row-reverse; gap: 36px; justify-content: center; height: 520px; }
+    .hero-copy h1 { font-size: clamp(30px, 3.4vw, 44px); font-weight: 900; letter-spacing: .3em; line-height: 1.7; }
+    .hero-copy p { font-size: 14px; color: var(--usuzumi); padding-top: 120px; line-height: 2.4; }
+    .season { align-self: flex-end; font-size: 12px; border: 1px solid var(--sumi); padding: 14px 6px; letter-spacing: .4em; }
+
+    section { padding: 120px 6vw; }
+    .heading { text-align: center; margin-bottom: 64px; }
+    .heading small { display: block; font-size: 11px; letter-spacing: .5em; color: var(--usuzumi); margin-bottom: 6px; }
+    .heading h2 { font-size: 28px; font-weight: 700; letter-spacing: .4em; }
+    .heading h2::after { content: ""; display: block; width: 1px; height: 40px; background: var(--sumi); margin: 20px auto 0; }
+
+    .lineup { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+    .item { text-align: center; }
+    .item .plate { aspect-ratio: 1; background: var(--washi); display: grid; place-items: center; margin-bottom: 20px; transition: background .4s; }
+    .item:hover .plate { background: #ebe4d4; }
+    .item svg { width: 58%; }
+    .item h3 { font-size: 17px; letter-spacing: .25em; }
+    .item p { font-size: 12px; color: var(--usuzumi); }
+
+    .story { background: var(--washi); display: grid; grid-template-columns: 1fr auto; gap: 8vw; align-items: center; }
+    .story .text p { max-width: 520px; margin-bottom: 1.4em; font-size: 15px; }
+    .story h2 { font-size: 30px; font-weight: 900; letter-spacing: .35em; height: 340px; }
+
+    .shop { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 980px; margin: 0 auto; }
+    .card { border: 1px solid #ddd5c5; padding: 40px; background: #fff; }
+    .card h3 { font-size: 18px; letter-spacing: .3em; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid #eee7d8; }
+    .card p { font-size: 14px; color: #5a554d; }
+    .btn { display: inline-block; margin-top: 18px; border: 1px solid var(--sumi); padding: 10px 28px; font-size: 13px; transition: .3s; }
+    .btn:hover { background: var(--sumi); color: var(--shiro); }
+
+    footer { text-align: center; padding: 40px 6vw; font-size: 11px; color: var(--usuzumi); border-top: 1px solid #ebe5d8; }
+
+    @media (max-width: 860px) {
+      nav { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 0 24px 60px; }
+      .hero-copy { height: 400px; order: -1; }
+      .hero-copy p { padding-top: 60px; }
+      section { padding: 80px 24px; }
+      .lineup { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .story, .shop { grid-template-columns: 1fr; }
+      .story h2 { writing-mode: horizontal-tb; height: auto; order: -1; }
+    }
+    .sns { display: flex; gap: 12px; justify-content: center; margin: 0 0 var(--sns-gap, 18px); }
+    .sns a { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid currentColor; border-radius: var(--sns-r, 50%); opacity: .7; transition: opacity .3s, transform .3s; }
+    .sns a:hover { opacity: 1; transform: translateY(-2px); }
+    .sns svg { width: 17px; height: 17px; }
+    footer { align-items: center; }
+    /* Motion */
+    .hero-art::before { animation: moonGlow 6s ease-in-out infinite; }
+    @keyframes moonGlow { 0%, 100% { box-shadow: 0 0 0 1px #e6e0d2, 0 0 0 0 rgba(255,255,255,0); } 50% { box-shadow: 0 0 0 1px #e6e0d2, 0 0 80px 20px rgba(255,255,255,.9); } }
+    .nerikiri { animation: float 5s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .branch { transform-origin: 100% 10%; animation: sway 7s ease-in-out infinite; }
+    @keyframes sway { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-3deg); } }
+    .petals { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+    .petal { position: absolute; top: -20px; width: 12px; height: 9px; background: #f1c4cb; border-radius: 12px 0 12px 0; opacity: .85; animation: fall linear forwards; }
+    @keyframes fall {
+      0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+      10% { opacity: .9; }
+      100% { transform: translate(var(--drift), 640px) rotate(var(--spin)); opacity: 0; }
+    }
+    .type-in .ch { opacity: 0; display: inline-block; animation: chIn .9s ease forwards; }
+    @keyframes chIn { from { opacity: 0; transform: translateY(-6px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+    .fade { opacity: 0; transform: translateY(26px); transition: opacity 1s ease, transform 1s ease; }
+    .fade.is-visible { opacity: 1; transform: none; }
+    .item .plate svg { transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+    .item:hover .plate svg { transform: rotate(-8deg) scale(1.06); }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-art::before, .nerikiri, .branch { animation: none; }
+      .petals { display: none; }
+      .type-in .ch { animation: none; opacity: 1; }
+      .fade { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo"><span class="moon"></span>月白堂</div>
+    <nav>
+      <a href="#lineup">季節の生菓子</a>
+      <a href="#story">月白堂のこと</a>
+      <a href="#shop">店舗・お取り寄せ</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-art"><div class="petals" aria-hidden="true"></div>
+      <svg class="branch" viewBox="0 0 200 200" aria-hidden="true">
+        <path d="M200 20 Q120 40 60 120" stroke="#6b5a4a" stroke-width="3" fill="none"/>
+        <path d="M140 46 Q120 70 128 96" stroke="#6b5a4a" stroke-width="2" fill="none"/>
+        <g fill="#f3cdd3"><circle cx="70" cy="110" r="10"/><circle cx="96" cy="84" r="8"/><circle cx="128" cy="96" r="9"/><circle cx="150" cy="40" r="7"/></g>
+        <g fill="#e9a3ae"><circle cx="70" cy="110" r="3"/><circle cx="96" cy="84" r="2.5"/><circle cx="128" cy="96" r="3"/></g>
+      </svg>
+      <svg class="nerikiri" viewBox="0 0 200 160" aria-label="桜の練り切りのイラスト">
+        <ellipse cx="100" cy="140" rx="80" ry="10" fill="#e6dfd0"/>
+        <path d="M100 20 C150 20 180 60 180 100 C180 130 145 142 100 142 C55 142 20 130 20 100 C20 60 50 20 100 20 Z" fill="#f1c4cb"/>
+        <path d="M100 20 C150 20 180 60 180 100 C180 130 145 142 100 142" fill="#e9b0b9" opacity=".6"/>
+        <g stroke="#fff" stroke-width="2" fill="none" opacity=".8"><path d="M100 82 L100 40"/><path d="M100 82 L140 66"/><path d="M100 82 L126 118"/><path d="M100 82 L74 118"/><path d="M100 82 L60 66"/></g>
+        <circle cx="100" cy="82" r="7" fill="#f7e27a"/>
+      </svg>
+    </div>
+    <div class="hero-copy">
+      <h1 class="tate type-in">ひとくちに、<br>季節をのせて。</h1>
+      <p class="tate type-in">京の町家で百二十年。<br>朝ごとに炊きあげる餡と、<br>職人の手のひらから<br>四季のかたちが生まれます。</p>
+      <div class="season tate">春 ・ 弥生</div>
+    </div>
+  </div>
+
+  <section id="lineup">
+    <div class="heading"><small>SEASONAL WAGASHI</small><h2>季節の生菓子</h2></div>
+    <div class="lineup">
+      <div class="item fade">
+        <div class="plate"><svg viewBox="0 0 120 100"><path d="M60 14 C92 14 108 40 108 62 C108 82 86 90 60 90 C34 90 12 82 12 62 C12 40 28 14 60 14 Z" fill="#f1c4cb"/><circle cx="60" cy="50" r="5" fill="#f7e27a"/></svg></div>
+        <h3>花衣</h3><p>こし餡 ／ 練り切り</p>
+      </div>
+      <div class="item fade">
+        <div class="plate"><svg viewBox="0 0 120 100"><circle cx="60" cy="54" r="40" fill="#a9bd86"/><path d="M30 46 Q60 20 90 46" stroke="#c9d8ad" stroke-width="5" fill="none"/><path d="M34 62 Q60 40 86 62" stroke="#8ea46c" stroke-width="4" fill="none"/></svg></div>
+        <h3>若葉</h3><p>白餡 ／ きんとん</p>
+      </div>
+      <div class="item fade">
+        <div class="plate"><svg viewBox="0 0 120 100"><path d="M20 80 Q20 26 60 20 Q100 26 100 80 Z" fill="#9db7d2"/><path d="M20 80 Q60 66 100 80" fill="#c8d8e8"/><circle cx="60" cy="44" r="6" fill="#fff" opacity=".8"/></svg></div>
+        <h3>春霞</h3><p>粒餡 ／ 錦玉</p>
+      </div>
+      <div class="item fade">
+        <div class="plate"><svg viewBox="0 0 120 100"><ellipse cx="60" cy="58" rx="44" ry="32" fill="#b98a5c"/><ellipse cx="60" cy="50" rx="36" ry="20" fill="#cfa274"/><g fill="#7d5636"><circle cx="46" cy="50" r="3"/><circle cx="62" cy="44" r="3"/><circle cx="74" cy="54" r="3"/></g></svg></div>
+        <h3>栗鹿の子</h3><p>栗餡 ／ 鹿の子</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="story fade">
+    <div class="text">
+      <p>月白（げっぱく）とは、月がのぼる直前、東の空がほのかに白む色のこと。明治の終わり、初代はその色に「まだ見ぬものへの期待」を重ね、この屋号を名づけました。</p>
+      <p>いまも変わらず、餡は毎朝その日の分だけ。北海道産の小豆を、銅鍋で時間をかけて炊きあげます。甘さはひかえめに、素材の香りがいちばん残るところで火を止めるのが、月白堂のならわしです。</p>
+      <p style="color: var(--usuzumi); font-size: 13px;">五代目　月白 しずか</p>
+    </div>
+    <h2 class="tate">ほのかに白む、<br>月の色。</h2>
+  </section>
+
+  <section id="shop">
+    <div class="heading"><small>SHOP &amp; ONLINE</small><h2>店舗・お取り寄せ</h2></div>
+    <div class="shop">
+      <div class="card fade">
+        <h3>本店</h3>
+        <p>京都市〇〇区〇〇町 12（架空）<br>9:30〜18:00 ／ 火曜定休<br>店内に茶房を併設しております。</p>
+        <a class="btn" href="#">アクセスを見る</a>
+      </div>
+      <div class="card fade">
+        <h3>お取り寄せ</h3>
+        <p>日持ちのする焼き菓子・最中を全国へお届けします。<br>季節の詰め合わせは数量限定です。</p>
+        <a class="btn" href="#">オンラインショップへ</a>
+      </div>
+    </div>
+  </section>
+
+  <footer><nav class="sns" aria-label="SNS"><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7 8 10.3h-6.3l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.9 3h6.4l4.4 5.9L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg></a><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg></a><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4a2.5 2.5 0 0 0-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg></a></nav>&copy; 月白堂 ／ このページはＹＫプランニングのデザインサンプルです。店舗・内容は架空のものです。</footer>
+
+  <script>
+    (() => {
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Hero copy: reveal one character at a time (heading first, then the lead text)
+      let delay = 0.3;
+      document.querySelectorAll('.type-in').forEach((el, i) => {
+        if (i === 1) delay += 0.4;
+        const walk = (node) => {
+          [...node.childNodes].forEach((n) => {
+            if (n.nodeType === Node.TEXT_NODE) {
+              const frag = document.createDocumentFragment();
+              [...n.textContent].forEach((c) => {
+                const s = document.createElement('span');
+                s.className = 'ch';
+                s.textContent = c;
+                s.style.animationDelay = `${delay.toFixed(2)}s`;
+                delay += i === 0 ? 0.12 : 0.035;
+                frag.appendChild(s);
+              });
+              n.replaceWith(frag);
+            } else if (n.nodeType === Node.ELEMENT_NODE) walk(n);
+          });
+        };
+        walk(el);
+      });
+
+      // Falling sakura petals over the hero art
+      const box = document.querySelector('.petals');
+      if (box && !reduce) {
+        const spawn = () => {
+          const p = document.createElement('span');
+          p.className = 'petal';
+          const size = 8 + Math.random() * 8;
+          p.style.left = `${Math.random() * 100}%`;
+          p.style.width = `${size}px`;
+          p.style.height = `${size * 0.75}px`;
+          p.style.background = Math.random() < 0.5 ? '#f1c4cb' : '#f7dde1';
+          p.style.setProperty('--drift', `${(Math.random() * 160 - 40).toFixed(0)}px`);
+          p.style.setProperty('--spin', `${(Math.random() * 720 - 360).toFixed(0)}deg`);
+          p.style.animationDuration = `${(7 + Math.random() * 5).toFixed(1)}s`;
+          p.addEventListener('animationend', () => p.remove());
+          box.appendChild(p);
+        };
+        for (let i = 0; i < 6; i++) setTimeout(spawn, i * 500);
+        setInterval(() => { if (!document.hidden) spawn(); }, 900);
+      }
+
+      // Fade-in on scroll, staggered within a row
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const siblings = [...e.target.parentElement.children].filter((c) => c.classList.contains('fade'));
+          e.target.style.transitionDelay = `${Math.max(0, siblings.indexOf(e.target)) * 0.15}s`;
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        });
+      }, { threshold: 0.2 });
+      document.querySelectorAll('.fade').forEach((el) => io.observe(el));
+    })();
+  </script>
+</body>
+</html>

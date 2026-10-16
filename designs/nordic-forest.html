@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lehto Garden Café | 森のベーカリーと植物の店（デザインサンプル）</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #1f2a22;
+      --forest-deep: #0a160d;
+      --moss: #33423c;
+      --white: #ffffff;
+      --mist: #eef1ec;
+      --pink: #e05b90;
+      --sky: #5abcea;
+      --lemon: #f3e36b;
+      --text: #1f2a22;
+      --mute: #6c776f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Zen Kaku Gothic New', sans-serif; color: var(--text); line-height: 2; letter-spacing: .05em; background: transparent; }
+    a { color: inherit; text-decoration: none; }
+    .en { font-family: 'Josefin Sans', sans-serif; letter-spacing: .18em; }
+
+    /* Fixed header (white bar like the reference) */
+    header { position: fixed; z-index: 50; inset: 0 0 auto 0; height: 70px; background: var(--white); display: flex; align-items: center; justify-content: space-between; padding: 0 4vw; box-shadow: 0 1px 0 rgba(0,0,0,.06); }
+    .logo { display: flex; align-items: center; gap: 10px; font-family: 'Josefin Sans', sans-serif; font-weight: 600; letter-spacing: .2em; font-size: 18px; color: var(--forest); }
+    .logo svg { width: 28px; height: 28px; }
+    #gnav { display: flex; gap: 34px; font-size: 13px; }
+    #gnav a { position: relative; padding: 4px 0; }
+    #gnav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--pink); transform: scaleX(0); transition: transform .35s; transform-origin: left; }
+    #gnav a:hover::after { transform: scaleX(1); }
+    .menu-btn { display: none; width: 44px; height: 44px; border: 0; background: transparent; cursor: pointer; position: relative; }
+    .menu-btn span { position: absolute; left: 10px; right: 10px; height: 2px; background: var(--forest); transition: .35s; }
+    .menu-btn span:nth-child(1) { top: 15px; } .menu-btn span:nth-child(2) { top: 21px; } .menu-btn span:nth-child(3) { top: 27px; }
+    .menu-btn.active span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+    .menu-btn.active span:nth-child(2) { opacity: 0; }
+    .menu-btn.active span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+    /* Fixed hero background — page content scrolls over it */
+    .hero-bg { position: fixed; inset: 0; z-index: -1; background: var(--forest-deep); }
+    .hero-bg svg { width: 100%; height: 100%; display: block; }
+    .hero { height: 100vh; min-height: 560px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); padding: 70px 24px 0; }
+    .hero .kicker { font-size: 13px; color: var(--lemon); }
+    .hero h1 { font-size: clamp(34px, 5vw, 66px); font-weight: 700; line-height: 1.5; letter-spacing: .12em; margin: 14px 0; text-shadow: 0 4px 30px rgba(0,0,0,.4); }
+    .hero p { font-size: 15px; opacity: .9; }
+    .scroll { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #fff; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .scroll::after { content: ""; width: 1px; height: 48px; background: linear-gradient(#fff, transparent); animation: drip 2s ease-in-out infinite; transform-origin: top; }
+    @keyframes drip { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
+    /* Panels scroll over the fixed background */
+    .panel { position: relative; background: var(--white); padding: 120px 6vw; }
+    .panel.dark { background: var(--forest); color: var(--white); }
+    .panel.mist { background: var(--mist); }
+    .label { font-size: 13px; color: var(--pink); font-weight: 600; }
+    .dark .label { color: var(--lemon); }
+    h2 { font-size: clamp(26px, 3vw, 40px); line-height: 1.6; margin: 8px 0 24px; letter-spacing: .1em; }
+    .lead { max-width: 560px; font-size: 15px; }
+
+    .concept { display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; align-items: center; }
+    .concept .pics { position: relative; height: 420px; }
+    .concept .pics div { position: absolute; border-radius: 6px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(10,22,13,.5); }
+    .concept .pics div:nth-child(1) { inset: 0 30% 18% 0; }
+    .concept .pics div:nth-child(2) { inset: 40% 0 0 46%; border: 8px solid var(--white); }
+    .concept .pics svg { width: 100%; height: 100%; display: block; }
+
+    /* Window: a hole in the page that shows a second fixed image */
+    .window { position: relative; height: 70vh; min-height: 380px; clip-path: inset(0); }
+    .window .fixed { position: fixed; inset: 0; z-index: -1; }
+    .window .fixed svg { width: 100%; height: 100%; display: block; }
+    .window .caption { position: absolute; inset: auto 6vw 40px auto; color: #fff; text-align: right; text-shadow: 0 2px 20px rgba(0,0,0,.5); }
+    .window .caption b { display: block; font-size: clamp(22px, 2.6vw, 34px); letter-spacing: .12em; }
+
+    .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 50px; }
+    .card { background: var(--moss); border-radius: 8px; overflow: hidden; transition: transform .35s; }
+    .card:hover { transform: translateY(-6px); }
+    .card .pic { aspect-ratio: 4/3; display: grid; place-items: center; }
+    .card .pic svg { width: 60%; }
+    .card .body { padding: 18px 22px 24px; }
+    .card .tag { display: inline-block; font-size: 11px; color: #fff; background: var(--pink); border-radius: 99px; padding: 0 12px; margin-bottom: 6px; }
+    .card .tag.blue { background: var(--sky); }
+    .card h3 { font-size: 17px; }
+    .card p { font-size: 13px; color: #c5cfc7; }
+
+    .shop { display: grid; grid-template-columns: 1.2fr 1fr; gap: 6vw; align-items: center; }
+    .plants { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .plants div { aspect-ratio: 3/4; background: var(--white); border-radius: 8px; display: grid; place-items: end center; padding-bottom: 14px; font-size: 12px; color: var(--mute); }
+    .plants svg { width: 70%; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; background: var(--forest); color: #fff; padding: 14px 32px; border-radius: 99px; font-size: 14px; transition: .3s; }
+    .btn:hover { background: var(--pink); }
+
+    .info { display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; }
+    .info dl { display: grid; grid-template-columns: 100px 1fr; row-gap: 12px; font-size: 14px; }
+    .info dt { color: var(--lemon); }
+    .info .map { border-radius: 8px; overflow: hidden; min-height: 280px; }
+    .info .map svg { width: 100%; height: 100%; display: block; }
+
+    footer { position: relative; background: var(--forest-deep); color: #9aa69d; text-align: center; padding: 40px 6vw; font-size: 12px; }
+    .sns { display: flex; gap: 12px; justify-content: center; margin-bottom: 18px; }
+    .sns a { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid currentColor; border-radius: 50%; opacity: .8; transition: opacity .3s, transform .3s, color .3s; }
+    .sns a:hover { opacity: 1; transform: translateY(-2px); color: var(--pink); }
+    .sns svg { width: 17px; height: 17px; }
+
+    /* Fade-in (animate.css-like) */
+    .fade { opacity: 0; transform: translateY(40px); transition: opacity 1s ease, transform 1s ease; }
+    .fade.is-visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .fade { opacity: 1; transform: none; transition: none; } .scroll::after { animation: none; } }
+
+    @media (max-width: 860px) {
+      .menu-btn { display: block; }
+      #gnav { position: fixed; inset: 70px 0 auto 0; flex-direction: column; gap: 0; background: var(--white); padding: 10px 24px 24px; font-size: 15px; transform: translateY(-120%); transition: transform .5s; z-index: -1; box-shadow: 0 20px 30px -20px rgba(0,0,0,.3); }
+      #gnav.open { transform: none; }
+      #gnav a { padding: 14px 0; border-bottom: 1px solid #eee; }
+      .panel { padding: 80px 22px; }
+      .concept, .shop, .info { grid-template-columns: 1fr; }
+      .concept .pics { height: 300px; }
+      .menu-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="#"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#1f2a22"/><path d="M14 5 C8 11 8 17 14 23 C20 17 20 11 14 5 Z" fill="#e05b90"/><path d="M14 9 V23" stroke="#fff" stroke-width="1.5"/></svg>LEHTO</a>
+    <nav id="gnav"><a class="en" href="#concept">CONCEPT</a><a class="en" href="#bakery">BAKERY</a><a class="en" href="#plants">PLANTS</a><a class="en" href="#access">ACCESS</a></nav>
+    <button class="menu-btn" type="button" aria-label="メニュー" aria-controls="gnav" aria-expanded="false"><span></span><span></span><span></span></button>
+  </header>
+
+  <div class="hero-bg" aria-hidden="true">
+    <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="fsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a160d"/><stop offset=".55" stop-color="#1f3b2a"/><stop offset="1" stop-color="#33423c"/></linearGradient>
+        <linearGradient id="ray" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3e36b" stop-opacity=".35"/><stop offset="1" stop-color="#f3e36b" stop-opacity="0"/></linearGradient>
+      </defs>
+      <rect width="1600" height="1000" fill="url(#fsky)"/>
+      <g fill="url(#ray)"><path d="M820 0 L900 0 L1180 1000 L960 1000 Z"/><path d="M700 0 L740 0 L760 1000 L620 1000 Z" opacity=".6"/><path d="M960 0 L990 0 L1400 1000 L1300 1000 Z" opacity=".5"/></g>
+      <g fill="#16271b"><path d="M100 1000 L180 300 L260 1000 Z"/><path d="M1340 1000 L1420 260 L1500 1000 Z"/><path d="M420 1000 L480 420 L540 1000 Z"/><path d="M1100 1000 L1160 380 L1220 1000 Z"/></g>
+      <g fill="#0e1c12"><path d="M-40 1000 L60 180 L160 1000 Z"/><path d="M1460 1000 L1560 160 L1660 1000 Z"/><path d="M260 1000 L340 360 L420 1000 Z"/><path d="M1220 1000 L1300 330 L1380 1000 Z"/></g>
+      <path d="M0 880 Q400 820 800 870 T1600 860 V1000 H0 Z" fill="#0a160d"/>
+      <g fill="#f3e36b" opacity=".8"><circle cx="560" cy="640" r="3"/><circle cx="980" cy="560" r="2.5"/><circle cx="760" cy="720" r="2"/><circle cx="1180" cy="680" r="3"/><circle cx="420" cy="540" r="2"/></g>
+    </svg>
+  </div>
+
+  <div class="hero">
+    <div class="kicker en">GARDEN BAKERY &amp; PLANTS</div>
+    <h1>週末は、<br>森の庭へ帰ろう。</h1>
+    <p>焼きたてのパンと、植物と、木もれ日のテラス。</p>
+    <div class="scroll en">SCROLL</div>
+  </div>
+
+  <section id="concept" class="panel">
+    <div class="concept">
+      <div class="fade">
+        <div class="label en">CONCEPT</div>
+        <h2>森のなかの、<br>ちいさなパン屋と温室。</h2>
+        <p class="lead">朝いちばんに焼きあがる天然酵母のパン、庭で育てたハーブのスープ、ガラスの温室いっぱいの観葉植物。木々に囲まれたこの場所で、街の時間をすこし忘れてほしい。そんな思いから、Lehto（レヘト＝木立）は生まれました。</p>
+      </div>
+      <div class="pics fade">
+        <div><svg viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice"><rect width="400" height="320" fill="#d9c9a8"/><rect y="220" width="400" height="100" fill="#b08a5c"/><ellipse cx="200" cy="200" rx="110" ry="40" fill="#c8894e"/><ellipse cx="200" cy="186" rx="104" ry="34" fill="#e2a868"/><g stroke="#f6d9a8" stroke-width="5" stroke-linecap="round"><path d="M140 180 l20 -10 M180 176 l20 -10 M220 176 l20 -10 M260 180 l14 -8"/></g></svg></div>
+        <div><svg viewBox="0 0 300 240" preserveAspectRatio="xMidYMid slice"><rect width="300" height="240" fill="#cfe3d6"/><path d="M150 240 q-50 -90 -10 -190 q40 100 10 190" fill="#3f6b4a"/><path d="M150 240 q50 -80 110 -110 q-30 90 -110 110" fill="#5c8a63"/><path d="M150 240 q-60 -50 -120 -60 q40 70 120 60" fill="#2f5338"/><rect x="110" y="200" width="80" height="40" fill="#e05b90"/></svg></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="window" aria-hidden="true">
+    <div class="fixed">
+      <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+        <rect width="1600" height="1000" fill="#7fb3a0"/>
+        <rect y="620" width="1600" height="380" fill="#4f7d5c"/>
+        <g fill="#f3e36b" opacity=".35"><circle cx="1250" cy="200" r="160"/></g>
+        <g fill="#2f5338"><circle cx="200" cy="420" r="220"/><circle cx="520" cy="360" r="180"/><circle cx="1400" cy="440" r="240"/></g>
+        <g fill="#3f6b4a"><circle cx="360" cy="520" r="200"/><circle cx="1160" cy="520" r="200"/></g>
+        <rect x="640" y="520" width="320" height="220" rx="10" fill="#fff" opacity=".9"/>
+        <path d="M620 530 L800 420 L980 530 Z" fill="#1f2a22"/>
+        <rect x="760" y="610" width="80" height="130" fill="#e05b90"/>
+        <g fill="#ffffff"><rect x="670" y="580" width="60" height="60"/><rect x="870" y="580" width="60" height="60"/></g>
+      </svg>
+    </div>
+    <div class="caption"><span class="en">MORNING 7:30</span><b>朝7時半、最初のパンが焼きあがる。</b></div>
+  </div>
+
+  <section id="bakery" class="panel dark">
+    <div class="fade">
+      <div class="label en">BAKERY &amp; CAFÉ</div>
+      <h2>天然酵母のパンと、<br>庭のハーブのランチ。</h2>
+      <p class="lead">国産小麦と自家培養の酵母で、毎朝30種類のパンを焼いています。テラス席ではパンと季節のスープのランチプレートをどうぞ。</p>
+    </div>
+    <div class="menu-grid">
+      <div class="card fade"><div class="pic" style="background:#2a3a30"><svg viewBox="0 0 120 90"><ellipse cx="60" cy="56" rx="48" ry="24" fill="#c8894e"/><ellipse cx="60" cy="50" rx="44" ry="20" fill="#e2a868"/><path d="M34 46 l14 -6 M54 44 l14 -6 M74 46 l12 -5" stroke="#f6d9a8" stroke-width="4" stroke-linecap="round"/></svg></div><div class="body"><span class="tag">人気No.1</span><h3>森のカンパーニュ</h3><p>ライ麦と胡桃入り ／ 680円</p></div></div>
+      <div class="card fade"><div class="pic" style="background:#2a3a30"><svg viewBox="0 0 120 90"><ellipse cx="60" cy="58" rx="46" ry="20" fill="#fff"/><ellipse cx="60" cy="54" rx="34" ry="14" fill="#7aa35a"/><circle cx="48" cy="52" r="5" fill="#e05b90"/><circle cx="70" cy="50" r="4" fill="#f3e36b"/><path d="M90 40 q10 -14 18 -10" stroke="#5abcea" stroke-width="3" fill="none"/></svg></div><div class="body"><span class="tag blue">季節限定</span><h3>庭ハーブのスープランチ</h3><p>パン2種・サラダ付き ／ 1,480円</p></div></div>
+      <div class="card fade"><div class="pic" style="background:#2a3a30"><svg viewBox="0 0 120 90"><path d="M36 30 h48 l-6 46 h-36 Z" fill="#fff"/><path d="M38 40 h44 l-4 34 h-36 Z" fill="#8a5a3a"/><path d="M84 40 q14 0 14 12 q0 12 -16 12" stroke="#fff" stroke-width="4" fill="none"/><path d="M50 22 q4 -10 0 -16 M62 22 q4 -10 0 -16" stroke="#c5cfc7" stroke-width="2" fill="none"/></svg></div><div class="body"><span class="tag">自家焙煎</span><h3>木立ブレンド</h3><p>ドリップ ／ 550円</p></div></div>
+    </div>
+  </section>
+
+  <div class="window" aria-hidden="true">
+    <div class="fixed">
+      <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+        <rect width="1600" height="1000" fill="#dfeee6"/>
+        <g stroke="#ffffff" stroke-width="10" fill="none"><path d="M200 1000 V300 Q800 -80 1400 300 V1000"/><path d="M500 1000 V200 M800 1000 V110 M1100 1000 V200 M200 520 H1400 M200 760 H1400"/></g>
+        <g fill="#3f6b4a"><path d="M300 1000 q-40 -200 40 -330 q60 160 -40 330"/><path d="M640 1000 q20 -240 120 -320 q-10 200 -120 320"/><path d="M1260 1000 q-60 -220 20 -360 q70 180 -20 360"/></g>
+        <g fill="#5c8a63"><path d="M940 1000 q-80 -180 -20 -300 q80 140 20 300"/><path d="M460 1000 q60 -160 160 -190 q-40 150 -160 190"/></g>
+        <g fill="#e05b90"><circle cx="350" cy="700" r="14"/><circle cx="980" cy="740" r="12"/></g>
+        <g fill="#5abcea"><circle cx="700" cy="760" r="10"/><circle cx="1220" cy="700" r="12"/></g>
+      </svg>
+    </div>
+    <div class="caption"><span class="en">GREENHOUSE</span><b>ガラスの温室に、120種の植物。</b></div>
+  </div>
+
+  <section id="plants" class="panel mist">
+    <div class="shop">
+      <div class="fade">
+        <div class="label en">PLANTS SHOP</div>
+        <h2>温室で育った植物を、<br>おうちへ連れて帰る。</h2>
+        <p class="lead">温室の植物はすべて購入いただけます。育て方のちいさなカード付き。毎月第1日曜には、苔玉や寄せ植えのワークショップも開いています。</p>
+        <a class="btn" href="#">ワークショップを予約する →</a>
+      </div>
+      <div class="plants fade">
+        <div><svg viewBox="0 0 80 100"><path d="M40 60 q-20 -30 -6 -54 q16 30 6 54" fill="#3f6b4a"/><path d="M40 60 q16 -24 34 -28 q-8 24 -34 28" fill="#5c8a63"/><path d="M24 60 h32 l-4 30 h-24 Z" fill="#e05b90"/></svg>モンステラ</div>
+        <div><svg viewBox="0 0 80 100"><g fill="#5c8a63"><ellipse cx="40" cy="30" rx="10" ry="20"/><ellipse cx="26" cy="44" rx="8" ry="16" transform="rotate(-30 26 44)"/><ellipse cx="54" cy="44" rx="8" ry="16" transform="rotate(30 54 44)"/></g><path d="M24 60 h32 l-4 30 h-24 Z" fill="#1f2a22"/></svg>ペペロミア</div>
+        <div><svg viewBox="0 0 80 100"><circle cx="40" cy="48" r="20" fill="#3f6b4a"/><circle cx="40" cy="48" r="13" fill="#5c8a63"/><path d="M24 64 h32 l-4 26 h-24 Z" fill="#5abcea"/></svg>苔玉</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="access" class="panel dark">
+    <div class="info">
+      <div class="fade">
+        <div class="label en">ACCESS</div>
+        <h2>Lehto Garden Café</h2>
+        <dl>
+          <dt>住所</dt><dd>北海道〇〇郡〇〇町 森の台 8（架空）</dd>
+          <dt>営業</dt><dd>8:00〜17:00（パンがなくなり次第終了）</dd>
+          <dt>定休日</dt><dd>月曜・火曜</dd>
+          <dt>駐車場</dt><dd>25台</dd>
+        </dl>
+      </div>
+      <div class="map fade"><svg viewBox="0 0 300 220" preserveAspectRatio="xMidYMid slice" aria-label="周辺地図のイメージ"><rect width="300" height="220" fill="#33423c"/><path d="M0 140 H300 M180 0 V220" stroke="#4d5e55" stroke-width="12"/><g fill="#2a3a30"><circle cx="60" cy="60" r="36"/><circle cx="250" cy="60" r="30"/><circle cx="90" cy="190" r="26"/></g><circle cx="210" cy="110" r="10" fill="#e05b90"/><text x="226" y="115" font-family="Josefin Sans, sans-serif" font-size="12" fill="#fff">LEHTO</text></svg></div>
+    </div>
+  </section>
+
+  <footer>
+    <nav class="sns" aria-label="SNS"><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7 8 10.3h-6.3l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.9 3h6.4l4.4 5.9L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg></a><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg></a><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4a2.5 2.5 0 0 0-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg></a></nav>
+    &copy; Lehto Garden Café ／ このページはＹＫプランニングのデザインサンプルです。店舗・内容は架空のものです。
+  </footer>
+
+  <script>
+    // Mobile menu
+    const btn = document.querySelector('.menu-btn');
+    const gnav = document.getElementById('gnav');
+    const toggle = (open) => { gnav.classList.toggle('open', open); btn.classList.toggle('active', open); btn.setAttribute('aria-expanded', open); };
+    btn.addEventListener('click', () => toggle(!gnav.classList.contains('open')));
+    gnav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => toggle(false)));
+
+    // Fade-in on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const sib = [...e.target.parentElement.children].filter((c) => c.classList.contains('fade'));
+        e.target.style.transitionDelay = `${Math.max(0, sib.indexOf(e.target)) * 0.15}s`;
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade').forEach((el) => io.observe(el));
+  </script>
+
+</body>
+</html>

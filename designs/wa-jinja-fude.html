@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天結神社 筆文字版 | ご祈祷・お守り・年中行事（デザインサンプル）</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Yuji+Boku&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --shu: #b8322a;
+      --shu-deep: #8e231d;
+      --shiro: #fbf8f2;
+      --washi: #f3ede1;
+      --sumi: #2a2522;
+      --kin: #b8954a;
+      --sugi: #3f5a3c;
+      --mute: #7d7468;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Shippori Mincho B1', serif; background: var(--shiro); color: var(--sumi); line-height: 2; letter-spacing: .08em; }
+    a { color: inherit; text-decoration: none; }
+    .tate { writing-mode: vertical-rl; }
+
+    /* Shide (paper streamer) divider */
+    .shide { display: flex; justify-content: center; gap: 120px; height: 46px; }
+    .shide svg { width: 22px; height: 46px; }
+
+    header { position: absolute; inset: 0 0 auto 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; padding: 24px 5vw; }
+    .logo { display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 800; letter-spacing: .3em; }
+    .logo .mon { width: 38px; height: 38px; }
+    header nav { display: flex; gap: 30px; font-size: 14px; }
+    header nav a { position: relative; }
+    header nav a::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 5px; height: 5px; border-radius: 50%; background: var(--shu); transform: translateX(-50%) scale(0); transition: transform .3s; }
+    header nav a:hover::after { transform: translateX(-50%) scale(1); }
+
+    .hero { position: relative; min-height: 100vh; overflow: hidden; display: grid; place-items: center; padding: 120px 5vw 80px;
+      background: radial-gradient(ellipse at 50% 30%, #fffdf8 0%, var(--washi) 70%); }
+    .hero .mist { position: absolute; inset: auto -10% 18% -10%; height: 40%; background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.9), transparent 70%); }
+    .hero .hills { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; }
+    .torii { position: relative; width: min(560px, 80vw); z-index: 1; }
+    .hero-copy { position: absolute; z-index: 2; top: 50%; right: 9vw; transform: translateY(-50%); display: flex; flex-direction: row-reverse; gap: 22px; }
+    .hero-copy h1 { font-size: clamp(30px, 3.6vw, 50px); font-weight: 800; letter-spacing: .4em; line-height: 1.6; text-shadow: 0 0 30px var(--shiro); }
+    .hero-copy p { font-size: 14px; letter-spacing: .35em; color: var(--mute); padding-top: 90px; }
+    .hero .sub { position: absolute; z-index: 2; bottom: 14px; left: 50%; transform: translateX(-50%); font-size: 12px; letter-spacing: .5em; color: var(--mute); }
+
+    section { padding: 120px 6vw; }
+    .heading { text-align: center; margin-bottom: 60px; }
+    .heading small { display: block; color: var(--shu); font-size: 12px; letter-spacing: .5em; margin-bottom: 8px; }
+    .heading h2 { font-size: 30px; font-weight: 800; letter-spacing: .4em; }
+
+    .news { max-width: 880px; margin: 0 auto; background: #fff; border-top: 3px solid var(--shu); box-shadow: 0 20px 50px -30px rgba(42,37,34,.4); padding: 36px 48px; position: relative; z-index: 3; margin-top: -60px; }
+    .news h2 { font-size: 16px; letter-spacing: .3em; margin-bottom: 12px; }
+    .news a { display: grid; grid-template-columns: 120px 90px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px dashed #e2d9c8; font-size: 14px; }
+    .news a:hover { color: var(--shu); }
+    .news time { color: var(--mute); font-size: 13px; }
+    .news .cat { font-size: 11px; text-align: center; border: 1px solid var(--shu); color: var(--shu); align-self: center; padding: 0 6px; }
+
+    .yuisho { display: grid; grid-template-columns: auto 1fr; gap: 6vw; align-items: start; max-width: 1080px; margin: 0 auto; }
+    .yuisho h2 { font-size: 32px; font-weight: 800; letter-spacing: .4em; height: 380px; color: var(--shu); }
+    .yuisho p { font-size: 15px; margin-bottom: 1.5em; max-width: 600px; }
+    .gosaijin { display: inline-flex; flex-direction: column; gap: 4px; border: 1px solid var(--kin); padding: 20px 28px; margin-top: 10px; font-size: 14px; }
+    .gosaijin b { color: var(--kin); font-size: 12px; letter-spacing: .4em; }
+
+    .kito { background: var(--shu); color: var(--shiro); position: relative; }
+    .kito .heading small { color: #f4c9a8; }
+    .kito-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1180px; margin: 0 auto; }
+    .kito-card { background: var(--shiro); color: var(--sumi); padding: 34px 24px 28px; text-align: center; position: relative; transition: transform .35s; }
+    .kito-card:hover { transform: translateY(-6px); }
+    .kito-card::before { content: ""; position: absolute; inset: 8px; border: 1px solid #e6d7b9; pointer-events: none; }
+    .kito-card svg { width: 64px; height: 64px; margin-bottom: 10px; }
+    .kito-card h3 { font-size: 19px; letter-spacing: .3em; margin-bottom: 6px; }
+    .kito-card p { font-size: 12.5px; color: var(--mute); line-height: 1.9; }
+    .kito-note { text-align: center; margin-top: 44px; font-size: 14px; }
+    .btn { display: inline-block; margin-top: 18px; padding: 12px 40px; border: 1px solid currentColor; font-size: 14px; letter-spacing: .3em; transition: .3s; }
+    .kito .btn:hover { background: var(--shiro); color: var(--shu); }
+
+    .omamori-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; max-width: 1080px; margin: 0 auto; align-items: center; }
+    .omamori { display: flex; gap: 22px; justify-content: center; }
+    .omamori svg { width: 92px; filter: drop-shadow(0 12px 18px rgba(42,37,34,.18)); transition: transform .4s; }
+    .omamori svg:nth-child(2) { margin-top: 36px; }
+    .omamori svg:hover { transform: rotate(-4deg) translateY(-6px); }
+    .omamori-wrap h3 { font-size: 24px; letter-spacing: .3em; margin-bottom: 18px; }
+    .omamori-wrap p { font-size: 15px; margin-bottom: 1em; }
+    .goshuin { display: flex; gap: 16px; align-items: center; background: var(--washi); padding: 18px 22px; margin-top: 20px; font-size: 14px; }
+    .goshuin .stamp { width: 56px; height: 56px; border: 2px solid var(--shu); border-radius: 50%; color: var(--shu); display: grid; place-items: center; font-size: 12px; font-weight: 800; line-height: 1.2; text-align: center; flex-shrink: 0; transform: rotate(-8deg); }
+
+    .events { background: var(--washi); }
+    .calendar { display: grid; grid-template-columns: repeat(6, 1fr); max-width: 1180px; margin: 0 auto; border-left: 1px solid #ddd2bf; }
+    .month { border-right: 1px solid #ddd2bf; padding: 0 14px 10px; min-height: 220px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .month .m { font-size: 13px; color: var(--shu); letter-spacing: .2em; border-bottom: 1px solid var(--shu); padding-bottom: 4px; }
+    .month .e { writing-mode: vertical-rl; font-size: 16px; letter-spacing: .3em; }
+    .month .d { font-size: 11px; color: var(--mute); }
+
+    .access { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; max-width: 1080px; margin: 0 auto; }
+    .access dl { display: grid; grid-template-columns: 110px 1fr; row-gap: 14px; font-size: 14px; }
+    .access dt { color: var(--shu); letter-spacing: .2em; }
+    .access dd { border-bottom: 1px solid #ebe3d5; padding-bottom: 12px; }
+    .keidai { background: #fff; border: 1px solid #e6dccb; }
+    .keidai svg { width: 100%; display: block; }
+
+    footer { background: var(--sumi); color: #cfc6b8; text-align: center; padding: 50px 6vw 34px; font-size: 12px; letter-spacing: .15em; }
+    footer .name { font-size: 20px; letter-spacing: .5em; color: var(--shiro); margin-bottom: 20px; }
+
+    .sns { display: flex; gap: 12px; justify-content: center; margin: 0 0 22px; }
+    .sns a { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid currentColor; border-radius: 50%; opacity: .7; transition: opacity .3s, transform .3s; }
+    .sns a:hover { opacity: 1; transform: translateY(-2px); }
+    .sns svg { width: 17px; height: 17px; }
+
+    /* Fade-in on scroll */
+    .fade { opacity: 0; transform: translateY(30px); transition: opacity 1s ease, transform 1s ease; }
+    .fade.is-visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .fade { opacity: 1; transform: none; transition: none; } }
+
+    @media (max-width: 900px) {
+      header nav { display: none; }
+      section { padding: 80px 22px; }
+      .hero-copy { top: 96px; right: 22px; transform: none; }
+      .hero-copy h1 { font-size: 24px; }
+      .hero-copy p { padding-top: 50px; }
+      .torii { margin-top: 160px; }
+      .news { padding: 26px 20px; margin: -40px 16px 0; }
+      .news a { grid-template-columns: 1fr; gap: 2px; }
+      .news .cat { justify-self: start; }
+      .yuisho, .omamori-wrap, .access { grid-template-columns: 1fr; }
+      .yuisho h2 { writing-mode: horizontal-tb; height: auto; }
+      .kito-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .calendar { grid-template-columns: repeat(3, 1fr); row-gap: 30px; }
+      .shide { gap: 60px; }
+    }
+    /* ===== Fude (brush) bold variant ===== */
+    .brush { font-family: 'Yuji Boku', serif; font-weight: 400; }
+    body { background: #f4efe4; }
+    header { color: var(--shiro); }
+    header .logo { font-family: 'Yuji Boku', serif; font-size: 26px; letter-spacing: .2em; }
+    .hero { background: radial-gradient(ellipse at 50% 35%, #3a1a14 0%, #160f0d 55%, #0c0908 100%); color: var(--shiro); }
+    .hero .mist { background: radial-gradient(ellipse at 50% 50%, rgba(184,50,42,.35), transparent 70%); }
+    .hero .kanji { position: absolute; z-index: 0; left: 4vw; top: 50%; transform: translateY(-50%); font-family: 'Yuji Boku', serif; font-size: min(62vh, 44vw); line-height: 1; color: rgba(184,50,42,.22); pointer-events: none; }
+    .torii { filter: drop-shadow(0 0 40px rgba(184,50,42,.45)); }
+    .hero-copy h1 { font-family: 'Yuji Boku', serif; font-weight: 400; font-size: clamp(44px, 5.6vw, 84px); letter-spacing: .12em; line-height: 1.35; text-shadow: 0 6px 30px rgba(0,0,0,.6); }
+    .hero-copy p { color: #d9c9a8; }
+    .hero .sub { color: #a7967a; }
+    .heading h2, .yuisho h2, .kito-card h3, .omamori-wrap h3, footer .name, .month .e, .news h2 { font-family: 'Yuji Boku', serif; font-weight: 400; }
+    .heading h2 { font-size: 46px; letter-spacing: .25em; position: relative; display: inline-block; padding: 0 .3em; }
+    .heading h2::before { content: ""; position: absolute; left: -10%; right: -10%; bottom: .05em; height: .42em; z-index: -1;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 40' preserveAspectRatio='none'%3E%3Cpath d='M4 26 C40 12 90 8 150 12 S260 18 296 10 L292 22 C250 30 200 26 150 28 S50 38 8 34 Z' fill='%23b8322a' opacity='.85'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
+    .heading, .kito, .events { position: relative; isolation: isolate; }
+    .kito .heading h2::before { filter: brightness(.55); }
+    .yuisho h2 { font-size: 54px; letter-spacing: .15em; }
+    .news { background: #1b1412; color: var(--shiro); border-top-color: var(--kin); }
+    .news a { border-bottom-color: #3a2e28; }
+    .news time { color: #a7967a; }
+    .news .cat { border-color: var(--kin); color: var(--kin); }
+    .kito { background: #1b1412; }
+    .kito .heading small { color: var(--kin); }
+    .kito-card { background: var(--shu); color: var(--shiro); }
+    .kito-card::before { border-color: rgba(255,255,255,.35); }
+    .kito-card h3 { font-size: 26px; letter-spacing: .15em; }
+    .kito-card p { color: #f6dcd0; }
+    .kito-card svg { filter: drop-shadow(0 0 0 #fff) brightness(1.2); }
+    .kito .btn { border-color: var(--kin); color: var(--kin); }
+    .kito .btn:hover { background: var(--kin); color: #1b1412; }
+    .month .e { font-size: 24px; letter-spacing: .1em; }
+    .month .m { font-family: 'Yuji Boku', serif; font-size: 16px; }
+    footer { background: #0c0908; }
+    footer .name { font-size: 34px; letter-spacing: .3em; }
+    @media (max-width: 900px) {
+      .hero .kanji { font-size: 70vw; left: -6vw; }
+      .heading h2 { font-size: 34px; }
+    }
+    .hero .hills path:nth-child(1) { fill: #2c1c17; }
+    .hero .hills path:nth-child(2) { fill: #1c2419; opacity: 1; }
+    .hero .hills path:nth-child(3) { fill: #f4efe4; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <svg class="mon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="#b8322a" stroke-width="2"/><g fill="#b8322a"><circle cx="20" cy="12" r="5"/><circle cx="12.5" cy="24" r="5"/><circle cx="27.5" cy="24" r="5"/></g><circle cx="20" cy="20" r="3" fill="#160f0d"/></svg>
+      天結神社
+    </div>
+    <nav><a href="#yuisho">ご由緒</a><a href="#kito">ご祈祷</a><a href="#omamori">お守り・御朱印</a><a href="#events">年中行事</a><a href="#access">境内・アクセス</a></nav>
+  </header>
+
+  <div class="hero" data-parallax>
+    <div class="mist" data-speed="0.2"></div>
+    <svg class="hills" data-speed="0.1" viewBox="0 0 1440 300" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 160 Q200 80 420 140 T840 120 T1440 110 V300 H0 Z" fill="#c9d1bd"/>
+      <path d="M0 220 Q260 150 520 210 T1040 190 T1440 200 V300 H0 Z" fill="#3f5a3c" opacity=".85"/>
+      <path d="M0 270 Q360 240 720 270 T1440 260 V300 H0 Z" fill="#fbf8f2"/>
+    </svg>
+    <svg class="torii" data-speed="-0.06" viewBox="0 0 560 460" aria-label="鳥居のイラスト">
+      <path d="M10 46 Q280 10 550 46 L556 74 Q280 44 4 74 Z" fill="#2a2522"/>
+      <path d="M30 74 Q280 50 530 74 L526 98 Q280 78 34 98 Z" fill="#b8322a"/>
+      <rect x="60" y="140" width="440" height="26" fill="#b8322a"/>
+      <rect x="250" y="98" width="60" height="42" fill="#b8322a"/>
+      <rect x="258" y="104" width="44" height="30" fill="#fbf8f2" stroke="#b8954a" stroke-width="2"/>
+      <text x="280" y="125" font-family="Shippori Mincho B1, serif" font-size="14" font-weight="800" text-anchor="middle" fill="#2a2522">天結</text>
+      <path d="M118 98 L106 460 H142 L150 98 Z" fill="#b8322a"/>
+      <path d="M442 98 L454 460 H418 L410 98 Z" fill="#b8322a"/>
+      <rect x="100" y="430" width="48" height="30" fill="#2a2522"/>
+      <rect x="412" y="430" width="48" height="30" fill="#2a2522"/>
+      <path d="M150 196 Q280 236 410 196" fill="none" stroke="#c7a76b" stroke-width="8" stroke-linecap="round"/>
+      <g fill="#fff" stroke="#d9cfbd" stroke-width="1">
+        <path d="M205 214 h10 l-6 12 h10 l-6 12 h10 l-6 12 h-10 l6 -12 h-10 l6 -12 h-10 Z"/>
+        <path d="M275 222 h10 l-6 12 h10 l-6 12 h10 l-6 12 h-10 l6 -12 h-10 l6 -12 h-10 Z"/>
+        <path d="M345 214 h10 l-6 12 h10 l-6 12 h10 l-6 12 h-10 l6 -12 h-10 l6 -12 h-10 Z"/>
+      </g>
+    </svg>
+    <div class="hero-copy" data-speed="0.15">
+      <h1 class="tate">縁を結ぶ、<br>千年の杜。</h1>
+      <p class="tate">ようこそお参りくださいました</p>
+    </div>
+    <div class="sub">AMAYUI JINJA</div>
+    <div class="kanji" data-speed="0.3" aria-hidden="true">結</div>
+  </div>
+
+  <div class="news fade">
+    <h2>お知らせ</h2>
+    <a href="#"><time>2026.10.15</time><span class="cat">祭事</span><span>秋季例大祭のご案内（11月3日）</span></a>
+    <a href="#"><time>2026.10.01</time><span class="cat">ご祈祷</span><span>七五三詣のご予約を受け付けております</span></a>
+    <a href="#"><time>2026.09.20</time><span class="cat">授与品</span><span>秋限定「紅葉の縁結び守」の授与を開始しました</span></a>
+  </div>
+
+  <section id="yuisho">
+    <div class="yuisho fade">
+      <h2 class="tate">ご由緒</h2>
+      <div>
+        <p>天結神社は、平安の頃、この地の人々が山の神と里の神とを「結ぶ」祠を建てたことにはじまると伝えられます。以来千年余、縁結び・家内安全・子授けの神として、近郷近在の崇敬を集めてまいりました。</p>
+        <p>境内を包む杉の杜は、市の天然記念物に指定されています。参道を一歩進むごとに空気が澄んでゆく、その静けさをどうぞお感じください。</p>
+        <div class="gosaijin"><b>御祭神</b>天結比売命（あまゆいひめのみこと）<br>大山祇命（おおやまつみのみこと）</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="shide" aria-hidden="true">
+    <svg viewBox="0 0 22 46"><path d="M2 0 h12 l-6 12 h12 l-6 12 h12 l-6 12 h-12 l6 -12 h-12 l6 -12 h-12 Z" fill="#fff" stroke="#b8a98e"/></svg>
+    <svg viewBox="0 0 22 46"><path d="M2 0 h12 l-6 12 h12 l-6 12 h12 l-6 12 h-12 l6 -12 h-12 l6 -12 h-12 Z" fill="#fff" stroke="#b8a98e"/></svg>
+    <svg viewBox="0 0 22 46"><path d="M2 0 h12 l-6 12 h12 l-6 12 h12 l-6 12 h-12 l6 -12 h-12 l6 -12 h-12 Z" fill="#fff" stroke="#b8a98e"/></svg>
+  </div>
+
+  <section id="kito" class="kito">
+    <div class="heading fade"><small>PRAYER</small><h2>ご祈祷</h2></div>
+    <div class="kito-grid">
+      <div class="kito-card fade"><svg viewBox="0 0 64 64"><circle cx="32" cy="24" r="10" fill="#f1c4b5"/><path d="M14 56 q18 -26 36 0 Z" fill="#b8322a"/><path d="M22 18 q10 -10 20 0" fill="none" stroke="#2a2522" stroke-width="3"/></svg><h3>初宮参り</h3><p>赤ちゃんの誕生を<br>神さまにご報告します</p></div>
+      <div class="kito-card fade"><svg viewBox="0 0 64 64"><path d="M14 18 h36 v4 h-36 Z" fill="#b8954a"/><path d="M20 22 v34 M44 22 v34" stroke="#b8322a" stroke-width="5"/><path d="M12 14 q20 -8 40 0" fill="none" stroke="#2a2522" stroke-width="4"/><circle cx="32" cy="42" r="8" fill="#f1c4b5"/></svg><h3>七五三</h3><p>お子さまの健やかな<br>成長を祈ります</p></div>
+      <div class="kito-card fade"><svg viewBox="0 0 64 64"><path d="M32 6 l18 10 v18 c0 12 -8 20 -18 24 c-10 -4 -18 -12 -18 -24 v-18 Z" fill="#b8322a"/><path d="M24 30 l6 6 l12 -12" fill="none" stroke="#fbf8f2" stroke-width="4" stroke-linecap="round"/></svg><h3>厄除け</h3><p>災厄を祓い、<br>一年の平穏を願います</p></div>
+      <div class="kito-card fade"><svg viewBox="0 0 64 64"><circle cx="24" cy="32" r="12" fill="none" stroke="#b8322a" stroke-width="4"/><circle cx="40" cy="32" r="12" fill="none" stroke="#b8954a" stroke-width="4"/></svg><h3>縁結び</h3><p>良きご縁との<br>めぐり逢いを祈ります</p></div>
+    </div>
+    <div class="kito-note fade">受付時間 9:00〜16:00 ／ 初穂料 5,000円より<br><a class="btn" href="#">ご祈祷を予約する</a></div>
+  </section>
+
+  <section id="omamori">
+    <div class="omamori-wrap">
+      <div class="omamori fade" aria-label="お守りのイラスト">
+        <svg viewBox="0 0 90 140"><path d="M45 4 q-10 0 -10 10" fill="none" stroke="#b8954a" stroke-width="3"/><path d="M10 30 Q10 16 24 16 H66 Q80 16 80 30 V130 H10 Z" fill="#b8322a"/><path d="M10 30 Q10 16 24 16 H66 Q80 16 80 30" fill="none" stroke="#b8954a" stroke-width="3"/><rect x="28" y="40" width="34" height="72" fill="#fbf8f2"/><text x="45" y="64" font-family="Shippori Mincho B1, serif" font-size="14" font-weight="800" text-anchor="middle" fill="#2a2522" writing-mode="tb">縁結</text></svg>
+        <svg viewBox="0 0 90 140"><path d="M10 30 Q10 16 24 16 H66 Q80 16 80 30 V130 H10 Z" fill="#fbf8f2" stroke="#d6cbb7"/><g fill="#e9b7bf"><circle cx="30" cy="40" r="5"/><circle cx="60" cy="56" r="5"/><circle cx="38" cy="96" r="5"/><circle cx="64" cy="110" r="5"/></g><rect x="30" y="54" width="30" height="50" fill="#b8954a" opacity=".2"/><text x="45" y="76" font-family="Shippori Mincho B1, serif" font-size="13" font-weight="800" text-anchor="middle" fill="#8e231d" writing-mode="tb">安産</text></svg>
+        <svg viewBox="0 0 90 140"><path d="M10 30 Q10 16 24 16 H66 Q80 16 80 30 V130 H10 Z" fill="#3f5a3c"/><path d="M10 30 Q10 16 24 16 H66 Q80 16 80 30" fill="none" stroke="#b8954a" stroke-width="3"/><rect x="28" y="40" width="34" height="72" fill="none" stroke="#b8954a" stroke-width="2"/><text x="45" y="64" font-family="Shippori Mincho B1, serif" font-size="14" font-weight="800" text-anchor="middle" fill="#fbf8f2" writing-mode="tb">厄除</text></svg>
+      </div>
+      <div class="fade">
+        <div class="heading" style="text-align:left;margin-bottom:24px"><small>AMULET &amp; GOSHUIN</small><h2>お守り・御朱印</h2></div>
+        <p>縁結び守、安産守、厄除守をはじめ、季節ごとの限定守を授与しております。郵送での授与も承ります。</p>
+        <div class="goshuin"><span class="stamp">天結<br>神社</span><span>御朱印は社務所にて書き入れいたします。<br>毎月1日・15日は限定の切り絵御朱印もございます。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="events" class="events">
+    <div class="heading fade"><small>ANNUAL EVENTS</small><h2>年中行事</h2></div>
+    <div class="calendar fade">
+      <div class="month"><span class="m">一月</span><span class="e">歳旦祭</span><span class="d">1日</span></div>
+      <div class="month"><span class="m">二月</span><span class="e">節分祭</span><span class="d">3日</span></div>
+      <div class="month"><span class="m">四月</span><span class="e">春季例祭</span><span class="d">第二日曜</span></div>
+      <div class="month"><span class="m">六月</span><span class="e">夏越の大祓</span><span class="d">30日</span></div>
+      <div class="month"><span class="m">十一月</span><span class="e">秋季例大祭</span><span class="d">3日</span></div>
+      <div class="month"><span class="m">十二月</span><span class="e">年越の大祓</span><span class="d">31日</span></div>
+    </div>
+  </section>
+
+  <section id="access">
+    <div class="heading fade"><small>ACCESS</small><h2>境内・アクセス</h2></div>
+    <div class="access fade">
+      <dl>
+        <dt>所在地</dt><dd>〇〇県〇〇市天結町 1-1（架空）</dd>
+        <dt>参拝時間</dt><dd>境内自由 ／ 社務所 9:00〜17:00</dd>
+        <dt>交通</dt><dd>〇〇駅より徒歩12分 ／ 参拝者駐車場 30台</dd>
+        <dt>お問合せ</dt><dd>0000-00-0000（社務所）</dd>
+      </dl>
+      <div class="keidai">
+        <svg viewBox="0 0 400 260" aria-label="境内図のイメージ">
+          <rect width="400" height="260" fill="#fbf8f2"/>
+          <g fill="#c9d1bd"><circle cx="40" cy="40" r="26"/><circle cx="360" cy="50" r="30"/><circle cx="50" cy="210" r="22"/><circle cx="350" cy="200" r="28"/></g>
+          <path d="M200 250 V80" stroke="#e3d8c3" stroke-width="22"/>
+          <path d="M184 226 h32 M188 222 v16 M212 222 v16" stroke="#b8322a" stroke-width="4"/>
+          <rect x="150" y="40" width="100" height="44" fill="#fff" stroke="#2a2522" stroke-width="2"/>
+          <path d="M140 42 L200 18 L260 42 Z" fill="#2a2522"/>
+          <text x="200" y="68" font-family="serif" font-size="13" text-anchor="middle" fill="#2a2522">本殿</text>
+          <rect x="250" y="130" width="70" height="34" fill="#fff" stroke="#b8322a"/>
+          <text x="285" y="152" font-family="serif" font-size="12" text-anchor="middle" fill="#b8322a">社務所</text>
+          <rect x="90" y="140" width="56" height="26" fill="#fff" stroke="#7d7468"/>
+          <text x="118" y="158" font-family="serif" font-size="11" text-anchor="middle" fill="#7d7468">手水舎</text>
+          <text x="226" y="244" font-family="serif" font-size="11" fill="#7d7468">一の鳥居</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="name">天結神社</div>
+    <nav class="sns" aria-label="SNS"><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7 8 10.3h-6.3l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.9 3h6.4l4.4 5.9L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg></a><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg></a><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4a2.5 2.5 0 0 0-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg></a></nav>
+    &copy; 天結神社 ／ このページはＹＫプランニングのデザインサンプルです。神社名・内容は架空のものです。
+  </footer>
+
+  <script>
+    // Fade-in on scroll
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); fadeObserver.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade').forEach((el) => fadeObserver.observe(el));
+
+    // Parallax on hero layers
+    (() => {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const items = [...document.querySelectorAll('[data-speed]')];
+      let ticking = false;
+      const update = () => {
+        const y = scrollY;
+        if (y < innerHeight * 1.2) items.forEach((el) => { el.style.translate = `0 ${(y * parseFloat(el.dataset.speed)).toFixed(1)}px`; });
+        ticking = false;
+      };
+      addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    })();
+  </script>
+
+</body>
+</html>
