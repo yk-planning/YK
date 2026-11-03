@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HPデザイン集 | ＹＫプランニング</title>
+  <meta name="description" content="ＹＫプランニングが制作したホームページのデザインサンプル集。和・ラグジュアリー・モノトーン・北欧の4テイストをご覧いただけます。">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .gradient-text {
+      background: linear-gradient(135deg, #60A5FA 0%, #F472B6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    /* Scroll reveal */
+    .reveal { opacity: 0; transition: opacity .9s ease, transform 1s cubic-bezier(.2,.7,.2,1) !important; will-change: opacity, transform; }
+    .reveal[data-from="left"]  { transform: translateX(-60px); }
+    .reveal[data-from="right"] { transform: translateX(60px); }
+    .reveal[data-from="up"]    { transform: translateY(40px); }
+    .reveal[data-delay] { transition-delay: .2s !important; }
+    .reveal.is-visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none !important; } }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-pink-500 selection:text-white">
+
+  <header class="fixed w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="../" class="text-xl font-bold tracking-wider gradient-text">ＹＫプランニング</a>
+      <nav class="flex space-x-6 md:space-x-8 text-sm font-medium text-slate-400">
+        <a href="#wa" class="hidden md:inline hover:text-white transition">和</a>
+        <a href="#luxury" class="hidden md:inline hover:text-white transition">ラグジュアリー</a>
+        <a href="#monotone" class="hidden md:inline hover:text-white transition">モノトーン</a>
+        <a href="#nordic" class="hidden md:inline hover:text-white transition">北欧</a>
+        <a href="../#contact" class="hover:text-white transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="pt-36 pb-16 px-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest text-pink-400 bg-pink-500/10 rounded-full border border-pink-500/20">
+        DESIGN COLLECTION
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-5">HPデザイン集</h1>
+      <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+        業種やブランドの世界観に合わせて制作したホームページのデザインサンプルです。<br class="hidden sm:inline">
+        画像をクリックすると、実際に動くページをご覧いただけます。
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 mt-8 text-xs">
+        <a href="#wa" class="px-4 py-2 rounded-full border border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white transition">和</a>
+        <a href="#luxury" class="px-4 py-2 rounded-full border border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white transition">ラグジュアリー</a>
+        <a href="#monotone" class="px-4 py-2 rounded-full border border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white transition">モノトーン</a>
+        <a href="#nordic" class="px-4 py-2 rounded-full border border-slate-700 text-slate-300 hover:border-slate-500 hover:text-white transition">北欧</a>
+      </div>
+    </div>
+  </section>
+
+  <main id="gallery" class="px-6 pt-24 md:pt-40 pb-48 md:pb-72">
+    <div class="max-w-6xl mx-auto space-y-64 md:space-y-[26rem]"></div>
+  </main>
+
+  <section class="py-20 bg-slate-900/50 border-t border-slate-800/50 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold mb-4">このテイストで作りたい、が出発点でOKです。</h2>
+      <p class="text-slate-400 text-sm sm:text-base mb-8">掲載デザインをベースにしたカスタマイズや、まったく新しいデザインのご提案も承ります。</p>
+      <a href="../#contact" class="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-pink-500 text-white font-semibold shadow-lg hover:scale-105 transition">
+        お問い合わせはこちら ➔
+      </a>
+    </div>
+  </section>
+
+  <footer class="py-8 border-t border-slate-800 text-center text-xs text-slate-500">
+    <p>掲載しているデザインはサンプルです。店舗名・ブランド名・内容はすべて架空のものです。</p>
+    <p class="mt-2">&copy; 2026 ＹＫプランニング. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Design catalog: add a page here and drop its screenshot into thumbs/
+    const categories = [
+      {
+        id: 'wa', name: '和', en: 'JAPANESE', accent: 'text-red-400 bg-red-500/10 border-red-500/20',
+        lead: '明朝体と余白、伝統文様で「品のある和」を表現。飲食店・老舗店舗・神社仏閣に。',
+        designs: [
+          { file: 'wa-umi', title: 'お食事処 汐見屋', type: '海鮮食事処', palettes: [['default', '藍'], ['sumi', '墨'], ['asagi', '浅葱']],
+            desc: '藍色に青海波の文様を敷き、縦書きのキャッチコピーで港町の老舗らしさを演出。重なり合うパララックスで海と朝焼けの奥行きを表現し、右下のボタンで配色も切り替えられます。' },
+          { file: 'wa-kashi', title: '和菓子処 月白堂', type: '和菓子店',
+            desc: '生成りと淡い季節色を基調に、たっぷりの余白で上品に。舞い落ちる花びらと一文字ずつ浮かぶコピーで、季節の移ろいをやさしく演出します。' },
+          { file: 'wa-jinja', title: '天結神社', type: '神社',
+            desc: '朱色の鳥居と紙垂、白と金を基調にした神社サイト。お知らせ・ご由緒・ご祈祷・お守り・年中行事・境内図まで、参拝者が知りたい情報をひとつにまとめています。' },
+          { file: 'wa-jinja-fude', title: '天結神社　筆文字版', type: '神社（力強いバージョン）',
+            desc: '同じ構成を、筆文字と墨色の背景で力強く。巨大な「結」の一文字と朱の筆跡を敷いた見出しで、祭事や由緒の重みを印象づけます。' },
+        ],
+      },
+      {
+        id: 'luxury', name: 'ラグジュアリー', en: 'LUXURY', accent: 'text-amber-300 bg-amber-400/10 border-amber-400/20',
+        lead: '黒とゴールド、繊細なセリフ体で特別感を。ホテル・ジュエリー・レストラン・歴史的建築に。',
+        designs: [
+          { file: 'lux-hotel', title: 'THE ORLÉ HAKONE', type: 'ラグジュアリーリゾート',
+            desc: '夜の山並みと金の細いフレームで静けさと格式を表現。客室紹介から予約バーまで、ホテルサイトに必要な要素をそろえています。' },
+          { file: 'lux-jewelry', title: 'Maison VÉLINE', type: 'ジュエリーブランド',
+            desc: 'パールホワイトとミッドナイトネイビーの対比でリングを引き立てるデザイン。ダイヤに走る光と瞬く星で、宝石のきらめきを演出します。' },
+          { file: 'lux-restaurant', title: 'Restaurant SORAÉ', type: 'フレンチレストラン',
+            desc: 'ゴールドとブラウンでまとめた大人のレストラン。スライドからロゴ、メニューへと順に現れるオープニングと、スクロールで上から降りてくるメニューバー、パララックスの帯で上質な時間を表現します。' },
+          { file: 'lux-yokan', title: '横浜山手 旧エルモア邸', type: '歴史的建造物・西洋館',
+            desc: '外観・大広間・バラ園の3枚が、拡大と縮小を交互に繰り返しながら切り替わるメインビジュアル。文字サイズ切り替えや本日の開館情報など、公共施設に必要な機能もそろえています。' },
+        ],
+      },
+      {
+        id: 'monotone', name: 'モノトーン', en: 'MONOTONE', accent: 'text-slate-200 bg-slate-400/10 border-slate-400/20',
+        lead: '白と黒だけで、タイポグラフィと構成力を際立たせる。建築・アパレル・クリエイターに。',
+        designs: [
+          { file: 'mono-arch', title: 'KANATA ARCHITECTS', type: '建築設計事務所',
+            desc: '巨大な欧文タイポとグリッドで、余白そのものをデザインに。実績リストはホバーで動く、ポートフォリオ向けの構成です。' },
+          { file: 'mono-apparel', title: 'MONOLOG', type: 'アパレルブランド',
+            desc: '白と黒に画面を二分し、ロゴが反転して重なる大胆なファーストビュー。流れるテキストとルックブックで勢いのあるブランドサイトに。' },
+        ],
+      },
+      {
+        id: 'nordic', name: '北欧', en: 'NORDIC', accent: 'text-emerald-300 bg-emerald-400/10 border-emerald-400/20',
+        lead: 'やさしい色と丸みのある書体で、あたたかい暮らしの空気を。カフェ・雑貨・インテリアに。',
+        designs: [
+          { file: 'nordic-cafe', title: 'metsä coffee & green', type: 'カフェ',
+            desc: '自家焙煎・ごはん・植物・本棚と、お店の魅力をセクションごとに紹介。手描き風のイラストで、ふらりと立ち寄りたくなる雰囲気に。' },
+          { file: 'nordic-forest', title: 'Lehto Garden Café', type: 'ベーカリー・植物店',
+            desc: '深い森のグリーンにピンクと水色を差した配色。固定した背景の上をページが流れ、途中の「窓」から別の景色がのぞくパララックスで、森の奥へ進む感覚を演出します。' },
+          { file: 'nordic-interior', title: 'KOTI', type: 'インテリアショップ', palettes: [['default', 'フィヨルド'], ['mint', 'カフェミント']],
+            desc: 'フィヨルドブルーとマスタードの配色で北欧らしく。カテゴリー・新入荷・読みものをそろえた、ECサイトのトップページを想定しています。' },
+          { file: 'nordic-interior', query: '?palette=mint', thumb: 'nordic-interior-mint', title: 'KOTI　カフェミント配色', type: 'インテリアショップ（配色違い）', palettes: [['default', 'フィヨルド'], ['mint', 'カフェミント']],
+            desc: '同じページを、ミント・グレージュ・焦げ茶にオレンジを差したカフェ風の配色に。右下のボタンでいつでも元の配色と見比べられます。' },
+        ],
+      },
+    ];
+
+    const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+    document.querySelector('#gallery > div').innerHTML = categories.map((cat) => `
+      <section id="${cat.id}" class="scroll-mt-24">
+        <div class="reveal flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-24 md:mb-36 pb-4 border-b border-slate-800" data-from="up">
+          <div>
+            <span class="text-xs font-semibold px-3 py-1 rounded-full border ${cat.accent}">${cat.en}</span>
+            <h2 class="text-3xl font-bold mt-3">${cat.name}</h2>
+          </div>
+          <p class="text-slate-400 text-sm sm:max-w-md sm:text-right">${cat.lead}</p>
+        </div>
+        <div class="space-y-48 md:space-y-80">
+          ${cat.designs.map((d, i) => `
+            <article class="group grid md:grid-cols-5 gap-6 md:gap-12 items-center">
+              <a href="${d.file}.html${d.query || ''}" target="_blank" rel="noopener" data-from="${i % 2 ? 'right' : 'left'}" class="reveal md:col-span-3 ${i % 2 ? 'md:order-2' : ''} block relative overflow-hidden aspect-[16/10] rounded-2xl border border-slate-800 bg-slate-800 shadow-2xl group-hover:border-slate-600 transition">
+                <img src="thumbs/${d.thumb || d.file}.png" alt="${esc(d.title)}のデザインサンプル" loading="lazy"
+                     class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105">
+                <span class="absolute inset-0 flex items-center justify-center bg-slate-950/0 group-hover:bg-slate-950/50 transition">
+                  <span class="opacity-0 group-hover:opacity-100 transition text-sm font-semibold px-5 py-2 rounded-full bg-white text-slate-900">ページを見る ↗</span>
+                </span>
+              </a>
+              <div data-from="up" data-delay class="reveal md:col-span-2 ${i % 2 ? 'md:order-1 md:text-right' : ''}">
+                <p class="text-xs font-mono text-slate-500 mb-3">${String(i + 1).padStart(2, '0')} — ${d.type}</p>
+                <h3 class="text-2xl sm:text-3xl font-bold mb-4">${esc(d.title)}</h3>
+                ${d.palettes ? `<div class="flex flex-wrap items-center gap-2 mb-5 ${i % 2 ? 'md:justify-end' : ''}">
+                  <span class="text-xs text-slate-500">🎨 配色 ${d.palettes.length}種：</span>
+                  ${d.palettes.map(([id, name]) => `<a href="${d.file}.html${id === 'default' ? '' : `?palette=${id}`}" target="_blank" rel="noopener" class="text-xs font-semibold px-3 py-1 rounded-full bg-pink-500/10 text-pink-300 border border-pink-500/20 hover:bg-pink-500/20 hover:text-white transition">${name}</a>`).join('')}
+                </div>` : ''}
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">${d.desc}</p>
+                <a href="${d.file}.html${d.query || ''}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition">
+                  サンプルページを開く ➔
+                </a>
+              </div>
+            </article>`).join('')}
+        </div>
+      </section>`).join('');
+
+    // Reveal each block as it scrolls into view
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+  </script>
+</body>
+</html>

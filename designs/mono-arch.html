@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KANATA ARCHITECTS | 建築設計事務所（デザインサンプル）</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --black: #111; --gray: #8a8a8a; --line: #dcdcdc; --paper: #f6f6f4; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', 'Noto Sans JP', sans-serif; font-weight: 300; background: #fff; color: var(--black); line-height: 1.9; }
+    a { color: inherit; text-decoration: none; }
+
+    header { display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: start; padding: 28px 4vw; font-size: 12px; letter-spacing: .08em; }
+    .logo { font-weight: 800; font-size: 15px; letter-spacing: .02em; line-height: 1.2; }
+    .logo span { display: block; font-weight: 300; color: var(--gray); }
+    .meta { color: var(--gray); }
+    header nav { justify-self: end; display: flex; gap: 28px; }
+    header nav a { border-bottom: 1px solid transparent; }
+    header nav a:hover { border-color: var(--black); }
+
+    .hero { padding: 6vh 4vw 0; }
+    .hero h1 { font-size: clamp(64px, 11.5vw, 190px); font-weight: 800; letter-spacing: -.045em; line-height: .88; }
+    .hero h1 .outline { color: transparent; -webkit-text-stroke: 1.5px var(--black); }
+    .hero-bottom { display: grid; grid-template-columns: 1fr 2fr; gap: 4vw; margin-top: 5vh; border-top: 1px solid var(--black); padding-top: 22px; }
+    .hero-bottom p { font-family: 'Noto Sans JP', sans-serif; font-size: 14px; max-width: 420px; }
+    .hero-bottom .scroll { font-size: 11px; letter-spacing: .3em; color: var(--gray); }
+
+    .visual { margin: 6vh 4vw 0; height: 46vh; min-height: 300px; background: var(--paper); position: relative; overflow: hidden; }
+    .visual svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .caption { position: absolute; left: 24px; bottom: 18px; font-size: 11px; letter-spacing: .1em; color: var(--gray); }
+
+    section { padding: 140px 4vw; }
+    .sec-head { display: grid; grid-template-columns: 1fr 2fr; gap: 4vw; margin-bottom: 70px; }
+    .sec-head .no { font-size: 12px; letter-spacing: .2em; color: var(--gray); }
+    .sec-head h2 { font-size: clamp(36px, 4.6vw, 68px); font-weight: 600; letter-spacing: -.03em; line-height: 1.05; }
+
+    .projects { border-top: 1px solid var(--black); }
+    .project { display: grid; grid-template-columns: 80px 1.4fr 1fr 1fr 120px; gap: 2vw; align-items: center; padding: 26px 0; border-bottom: 1px solid var(--line); font-size: 14px; transition: padding .4s, background .4s; }
+    .project:hover { background: var(--paper); padding-left: 18px; }
+    .project .n { color: var(--gray); font-size: 12px; }
+    .project .t { font-size: 22px; font-weight: 600; letter-spacing: -.01em; }
+    .project .c { color: var(--gray); font-family: 'Noto Sans JP', sans-serif; }
+    .project .y { text-align: right; font-size: 12px; }
+
+    .gallery { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 260px 260px; gap: 12px; margin-top: 80px; }
+    .tile { background: var(--paper); position: relative; overflow: hidden; }
+    .tile:first-child { grid-row: span 2; }
+    .tile svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+    .philosophy { background: var(--black); color: #fff; }
+    .philosophy .sec-head .no { color: #777; }
+    .philosophy blockquote { font-family: 'Noto Sans JP', sans-serif; font-size: clamp(22px, 2.6vw, 38px); font-weight: 300; line-height: 1.8; max-width: 900px; margin-left: calc(33.3% + 1.3vw); }
+    .philosophy blockquote em { font-style: normal; border-bottom: 1px solid #fff; }
+
+    .contact { display: grid; grid-template-columns: 1fr 2fr; gap: 4vw; }
+    .contact a.big { font-size: clamp(32px, 5vw, 76px); font-weight: 600; letter-spacing: -.03em; border-bottom: 2px solid var(--black); line-height: 1.2; }
+    .contact dl { display: grid; grid-template-columns: 120px 1fr; margin-top: 50px; font-size: 13px; row-gap: 8px; font-family: 'Noto Sans JP', sans-serif; }
+    .contact dt { color: var(--gray); }
+
+    footer { padding: 28px 4vw; display: flex; justify-content: space-between; font-size: 11px; color: var(--gray); border-top: 1px solid var(--line); }
+
+    @media (max-width: 860px) {
+      header { grid-template-columns: 1fr auto; }
+      .meta { display: none; }
+      .hero-bottom, .sec-head, .contact { grid-template-columns: 1fr; }
+      section { padding: 90px 20px; }
+      .project { grid-template-columns: 40px 1fr; }
+      .project .c, .project .y { grid-column: 2; text-align: left; }
+      .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 160px 160px; }
+      .tile:first-child { grid-column: span 2; grid-row: auto; }
+      .philosophy blockquote { margin-left: 0; }
+      footer { flex-direction: column; gap: 6px; }
+    }
+    .sns { display: flex; gap: 12px; justify-content: center; margin: 0 0 var(--sns-gap, 18px); }
+    .sns a { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid currentColor; border-radius: var(--sns-r, 50%); opacity: .7; transition: opacity .3s, transform .3s; }
+    .sns a:hover { opacity: 1; transform: translateY(-2px); }
+    .sns svg { width: 17px; height: 17px; }
+    footer { align-items: center; }
+    footer { --sns-gap: 0; }
+    .sns a { --sns-r: 0; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">KANATA<span>ARCHITECTS</span></div>
+    <div class="meta">Tokyo / Architecture &amp; Interior<br>Since 2012</div>
+    <nav><a href="#works">Works</a><a href="#philosophy">Philosophy</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <div class="hero">
+    <h1>Space<br><span class="outline">for</span> Quiet.</h1>
+    <div class="hero-bottom">
+      <div class="scroll">( SCROLL )</div>
+      <p>光と影、素材と余白。わたしたちは、そこで過ごす人の「静けさ」から逆算して空間を設計します。住宅、店舗、ホテルまで。</p>
+    </div>
+  </div>
+
+  <div class="visual">
+    <svg viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid slice" aria-label="建築のイメージ">
+      <rect width="1200" height="460" fill="#efefed"/>
+      <polygon points="0,460 0,300 520,180 1200,300 1200,460" fill="#d9d9d6"/>
+      <rect x="300" y="120" width="560" height="260" fill="#fff"/>
+      <rect x="300" y="120" width="560" height="26" fill="#222"/>
+      <rect x="360" y="190" width="220" height="190" fill="#2a2a2a"/>
+      <rect x="610" y="190" width="200" height="120" fill="#cfcfcc"/>
+      <polygon points="360,380 580,380 620,460 320,460" fill="#bdbdba" opacity=".6"/>
+      <line x1="610" y1="250" x2="810" y2="250" stroke="#fff" stroke-width="2"/>
+    </svg>
+    <span class="caption">House in Hayama — 2025</span>
+  </div>
+
+  <section id="works">
+    <div class="sec-head"><div class="no">(01) Selected Works</div><h2>Selected<br>Works</h2></div>
+    <div class="projects">
+      <a class="project" href="#"><span class="n">01</span><span class="t">House in Hayama</span><span class="c">住宅 ／ 神奈川</span><span class="c">RC造 2階建</span><span class="y">2025</span></a>
+      <a class="project" href="#"><span class="n">02</span><span class="t">Coffee Stand ITO</span><span class="c">店舗 ／ 東京</span><span class="c">内装設計</span><span class="y">2024</span></a>
+      <a class="project" href="#"><span class="n">03</span><span class="t">Hotel Kumo</span><span class="c">宿泊 ／ 長野</span><span class="c">木造 平屋 12室</span><span class="y">2023</span></a>
+      <a class="project" href="#"><span class="n">04</span><span class="t">Gallery Sumi</span><span class="c">文化施設 ／ 京都</span><span class="c">改修</span><span class="y">2022</span></a>
+    </div>
+    <div class="gallery">
+      <div class="tile"><svg viewBox="0 0 400 520" preserveAspectRatio="xMidYMid slice"><rect width="400" height="520" fill="#e8e8e5"/><rect x="60" y="0" width="120" height="520" fill="#1c1c1c"/><polygon points="180,120 400,60 400,520 180,520" fill="#fff"/><rect x="220" y="260" width="140" height="180" fill="#d3d3d0"/></svg></div>
+      <div class="tile"><svg viewBox="0 0 300 260" preserveAspectRatio="xMidYMid slice"><rect width="300" height="260" fill="#2b2b2b"/><circle cx="150" cy="130" r="70" fill="#f2f2f0"/><rect x="0" y="180" width="300" height="80" fill="#1a1a1a"/></svg></div>
+      <div class="tile"><svg viewBox="0 0 300 260" preserveAspectRatio="xMidYMid slice"><rect width="300" height="260" fill="#f2f2f0"/><g stroke="#bbb" stroke-width="2"><line x1="0" y1="60" x2="300" y2="60"/><line x1="0" y1="120" x2="300" y2="120"/><line x1="0" y1="180" x2="300" y2="180"/></g><rect x="110" y="40" width="80" height="220" fill="#333"/></svg></div>
+      <div class="tile"><svg viewBox="0 0 300 260" preserveAspectRatio="xMidYMid slice"><rect width="300" height="260" fill="#dededb"/><polygon points="0,260 150,90 300,260" fill="#fff"/><polygon points="150,90 300,260 220,260" fill="#c4c4c1"/></svg></div>
+      <div class="tile"><svg viewBox="0 0 300 260" preserveAspectRatio="xMidYMid slice"><rect width="300" height="260" fill="#171717"/><rect x="40" y="40" width="220" height="180" fill="none" stroke="#666"/><rect x="80" y="80" width="140" height="140" fill="#2f2f2f"/></svg></div>
+    </div>
+  </section>
+
+  <section id="philosophy" class="philosophy">
+    <div class="sec-head"><div class="no">(02) Philosophy</div><h2>Less, but<br>Deeper.</h2></div>
+    <blockquote>足すことよりも、引くことに時間をかける。<br>残ったわずかな要素が、<em>光をどう受け止めるか</em>。<br>それだけを考え抜いた空間は、何年経っても静かに美しい。</blockquote>
+  </section>
+
+  <section id="contact">
+    <div class="contact">
+      <div class="sec-head" style="display:block;margin:0"><div class="no">(03) Contact</div></div>
+      <div>
+        <a class="big" href="#">hello@kanata-arch.example</a>
+        <dl>
+          <dt>Office</dt><dd>東京都目黒区〇〇 0-0-0（架空）</dd>
+          <dt>Tel</dt><dd>03-0000-0000</dd>
+          <dt>Instagram</dt><dd>@kanata.architects</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <footer><nav class="sns" aria-label="SNS"><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7 8 10.3h-6.3l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.9 3h6.4l4.4 5.9L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg></a><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg></a><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4a2.5 2.5 0 0 0-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg></a></nav><span>&copy; KANATA ARCHITECTS</span><span>このページはＹＫプランニングのデザインサンプルです。事務所・内容は架空のものです。</span></footer>
+
+</body>
+</html>

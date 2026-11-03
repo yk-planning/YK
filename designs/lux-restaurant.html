@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant SORAÉ | フランス料理（デザインサンプル）</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #d5a06d;
+      --gold-deep: #ba9665;
+      --brown: #362827;
+      --brown-2: #493634;
+      --brown-3: #5c3f3e;
+      --cream: #fcfaf8;
+      --beige: #f4f0e9;
+      --gray: #9d9291;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Zen Old Mincho', serif; background: var(--cream); color: var(--brown); line-height: 2.1; letter-spacing: .08em; }
+    a { color: inherit; text-decoration: none; }
+    .en { font-family: 'Playfair Display', serif; letter-spacing: .12em; }
+
+    /* Header: sits over the hero (fades in after the slider), then becomes a fixed bar
+       that slides down from the top once the hero is scrolled past */
+    header { position: absolute; z-index: 30; inset: 0 0 auto 0; opacity: 0; transition: opacity .6s ease; }
+    header.is-ready { opacity: 1; }
+    header .bar { height: 74px; display: flex; align-items: center; justify-content: space-between; padding: 0 4vw; color: #fff; }
+    header .shop { font-family: 'Playfair Display', serif; font-size: 20px; letter-spacing: .3em; opacity: 0; transition: opacity .4s; }
+    header nav { display: flex; gap: 30px; font-size: 13px; }
+    header nav a { position: relative; padding: 4px 0; }
+    header nav a::after { content: ""; position: absolute; left: 50%; right: 50%; bottom: 0; height: 1px; background: var(--gold); transition: left .35s, right .35s; }
+    header nav a:hover::after { left: 0; right: 0; }
+    header .reserve { border: 1px solid currentColor; padding: 6px 20px; font-size: 12px; transition: .3s; }
+    header .reserve:hover { background: var(--gold); border-color: var(--gold); color: var(--brown); }
+    header.scl { position: fixed; top: -74px; opacity: 1; background: rgba(54,40,39,.96); box-shadow: 0 10px 30px -18px rgba(0,0,0,.6); transition: top .5s cubic-bezier(.25,.8,.3,1); }
+    header.scl.show { top: 0; }
+    header.scl .shop { opacity: 1; }
+    header.scl::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+
+    /* Hero: fade slider + centered logo */
+    .hero { position: relative; height: 100vh; min-height: 600px; overflow: hidden; background: #1c1413; }
+    .slides { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease; }
+    .slides.is-ready { opacity: 1; }
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 3s linear; }
+    .slide.is-active { opacity: 1; }
+    .slide svg { width: 100%; height: 100%; display: block; }
+    .hero::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(28,20,19,.15), rgba(28,20,19,.65)); pointer-events: none; }
+    .main-logo { position: absolute; z-index: 2; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; text-align: center; opacity: 0; transition: opacity 1s ease; }
+    .main-logo.is-ready { opacity: 1; }
+    .main-logo .mark { width: 70px; height: 70px; margin-bottom: 18px; }
+    .main-logo h1 { font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(42px, 6vw, 84px); letter-spacing: .32em; line-height: 1.1; padding-left: .32em; }
+    .main-logo p { margin-top: 16px; font-size: 13px; letter-spacing: .4em; color: #ead8c0; }
+    .main-logo .line { width: 1px; height: 0; background: var(--gold); margin-top: 26px; transition: height 1.4s ease .6s; }
+    .main-logo.is-ready .line { height: 60px; }
+    .pager { position: absolute; z-index: 3; left: 50%; bottom: 30px; transform: translateX(-50%); display: flex; gap: 12px; opacity: 0; transition: opacity .5s; }
+    .pager.is-ready { opacity: 1; }
+    .pager span { width: 7px; height: 7px; border-radius: 50%; border: 1px solid #fff; transition: background .4s; }
+    .pager span.on { background: #fff; }
+
+    section { padding: 140px 8vw; }
+    .ttl { text-align: center; margin-bottom: 60px; }
+    .ttl .en { display: block; color: var(--gold); font-size: 15px; font-style: italic; letter-spacing: .3em; }
+    .ttl h2 { font-size: 28px; font-weight: 400; letter-spacing: .3em; margin-top: 4px; }
+    .ttl h2::after { content: ""; display: block; width: 40px; height: 1px; background: var(--gold); margin: 22px auto 0; }
+
+    .concept { max-width: 760px; margin: 0 auto; text-align: center; }
+    .concept h3 { font-size: clamp(22px, 2.4vw, 30px); font-weight: 400; line-height: 1.9; margin-bottom: 30px; letter-spacing: .2em; }
+    .concept p { font-size: 15px; color: var(--brown-2); }
+
+    /* Parallax bands */
+    .para { position: relative; height: 72vh; min-height: 420px; overflow: hidden; }
+    .para .bg { position: absolute; left: 0; right: 0; top: -30%; height: 160%; will-change: transform; }
+    .para .bg svg { width: 100%; height: 100%; display: block; }
+    .para .copy { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: #fff; z-index: 1; text-shadow: 0 2px 20px rgba(0,0,0,.5); }
+    .para .copy .en { display: block; font-size: clamp(30px, 4vw, 54px); font-style: italic; letter-spacing: .1em; }
+    .para .copy small { font-size: 14px; letter-spacing: .4em; }
+
+    .cuisine { background: var(--beige); }
+    .course-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1180px; margin: 0 auto; }
+    .course { background: var(--cream); border: 1px solid #e6dccd; transition: transform .4s, box-shadow .4s; }
+    .course:hover { transform: translateY(-6px); box-shadow: 0 30px 50px -36px rgba(54,40,39,.6); }
+    .course .pic { aspect-ratio: 4/3; display: grid; place-items: center; background: #efe6d8; overflow: hidden; }
+    .course .pic svg { width: 64%; transition: transform .8s; }
+    .course:hover .pic svg { transform: scale(1.06); }
+    .course .body { padding: 26px 28px 30px; text-align: center; }
+    .course .en { color: var(--gold-deep); font-size: 13px; letter-spacing: .3em; }
+    .course h3 { font-size: 20px; font-weight: 400; letter-spacing: .2em; margin: 6px 0; }
+    .course .price { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--brown-3); }
+    .course p { font-size: 13px; color: var(--gray); margin-top: 8px; }
+
+    .chef { display: grid; grid-template-columns: 1fr 1.1fr; gap: 6vw; align-items: center; max-width: 1180px; margin: 0 auto; }
+    .chef .portrait { aspect-ratio: 4/5; background: var(--brown-2); position: relative; overflow: hidden; }
+    .chef .portrait svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .chef .portrait::after { content: ""; position: absolute; inset: 16px; border: 1px solid rgba(213,160,109,.6); }
+    .chef h3 { font-size: 26px; font-weight: 400; letter-spacing: .25em; margin: 10px 0 24px; }
+    .chef h3 small { display: block; font-size: 13px; color: var(--gold-deep); letter-spacing: .3em; }
+    .chef p { font-size: 15px; color: var(--brown-2); margin-bottom: 1.2em; }
+
+    .reserve-sec { background: var(--brown); color: var(--cream); text-align: center; }
+    .reserve-sec .ttl h2 { color: #fff; }
+    .reserve-sec p { color: #d9cbbb; font-size: 15px; }
+    .tel { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.6vw, 44px); letter-spacing: .15em; color: var(--gold); margin: 20px 0 6px; }
+    .btns { display: flex; justify-content: center; gap: 18px; margin-top: 36px; flex-wrap: wrap; }
+    .btn { display: inline-block; min-width: 240px; padding: 16px 30px; border: 1px solid var(--gold); color: var(--gold); font-size: 14px; letter-spacing: .25em; transition: .35s; }
+    .btn:hover, .btn.fill { background: var(--gold); color: var(--brown); }
+    .btn.fill:hover { background: transparent; color: var(--gold); }
+
+    .access { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; max-width: 1080px; margin: 0 auto; }
+    .access dl { display: grid; grid-template-columns: 110px 1fr; row-gap: 14px; font-size: 14px; }
+    .access dt { color: var(--gold-deep); }
+    .access dd { border-bottom: 1px solid #ebe3d6; padding-bottom: 12px; }
+    .access .map { background: var(--beige); border: 1px solid #e6dccd; min-height: 280px; }
+    .access .map svg { width: 100%; height: 100%; display: block; }
+
+    footer { background: #241a19; color: var(--gray); text-align: center; padding: 50px 6vw 34px; font-size: 12px; }
+    footer .logo { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 22px; letter-spacing: .4em; margin-bottom: 18px; }
+    .sns { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; }
+    .sns a { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid currentColor; border-radius: 50%; opacity: .8; transition: opacity .3s, color .3s, transform .3s; }
+    .sns a:hover { opacity: 1; color: var(--gold); transform: translateY(-2px); }
+    .sns svg { width: 17px; height: 17px; }
+
+    .fade { opacity: 0; transform: translateY(30px); transition: opacity 1.2s ease, transform 1.2s ease; }
+    .fade.is-visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .fade { opacity: 1; transform: none; transition: none; }
+      .slide { transition: none; }
+    }
+
+    @media (max-width: 900px) {
+      header nav { display: none; }
+      section { padding: 90px 22px; }
+      .course-grid, .chef, .access { grid-template-columns: 1fr; }
+      .btn { min-width: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="bar">
+      <a class="shop" href="#">SORAÉ</a>
+      <nav class="en"><a href="#concept">Concept</a><a href="#cuisine">Cuisine</a><a href="#chef">Chef</a><a href="#access">Access</a></nav>
+      <a class="reserve" href="#reserve">ご予約</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="slides">
+      <div class="slide">
+        <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><radialGradient id="lamp" cx=".5" cy=".3" r=".7"><stop offset="0" stop-color="#7a5a40"/><stop offset="1" stop-color="#1c1413"/></radialGradient></defs>
+          <rect width="1600" height="1000" fill="url(#lamp)"/>
+          <rect y="640" width="1600" height="360" fill="#2a1e1c"/>
+          <ellipse cx="800" cy="700" rx="520" ry="90" fill="#f4f0e9"/>
+          <ellipse cx="800" cy="690" rx="200" ry="40" fill="#fff"/>
+          <ellipse cx="800" cy="684" rx="110" ry="20" fill="#c97b52"/><ellipse cx="780" cy="678" rx="40" ry="8" fill="#e4a47a"/>
+          <g fill="#6f8f4f"><circle cx="840" cy="672" r="6"/><circle cx="760" cy="690" r="5"/></g>
+          <path d="M520 690 v-120 a20 20 0 0 1 40 0 v120" fill="none" stroke="#e9e1d4" stroke-width="5" opacity=".7"/>
+          <path d="M1060 690 v-160 l-20 -50 h40 l-20 50" fill="none" stroke="#e9e1d4" stroke-width="5" opacity=".7"/>
+          <path d="M1060 520 q-14 -20 0 -30 q14 10 0 30" fill="#8e2b3a" opacity=".85"/>
+          <g fill="#ffe7b0" opacity=".9"><circle cx="300" cy="280" r="6"/><circle cx="1300" cy="240" r="6"/><circle cx="800" cy="160" r="8"/></g>
+          <g fill="#ffe7b0" opacity=".18"><circle cx="300" cy="280" r="60"/><circle cx="1300" cy="240" r="60"/><circle cx="800" cy="160" r="90"/></g>
+        </svg>
+      </div>
+      <div class="slide">
+        <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2340"/><stop offset=".55" stop-color="#b9715a"/><stop offset="1" stop-color="#f0c08a"/></linearGradient></defs>
+          <rect width="1600" height="1000" fill="url(#dusk)"/>
+          <g fill="#1c1413"><rect x="120" y="560" width="90" height="440"/><rect x="230" y="480" width="120" height="520"/><rect x="380" y="600" width="80" height="400"/><rect x="1180" y="520" width="110" height="480"/><rect x="1310" y="600" width="90" height="400"/><rect x="1420" y="440" width="120" height="560"/></g>
+          <g fill="#ffd89a" opacity=".8"><rect x="250" y="520" width="12" height="16"/><rect x="290" y="560" width="12" height="16"/><rect x="1200" y="560" width="12" height="16"/><rect x="1450" y="500" width="12" height="16"/></g>
+          <rect y="800" width="1600" height="200" fill="#241a19"/>
+          <rect x="560" y="300" width="480" height="520" fill="none" stroke="#d5a06d" stroke-width="10"/>
+        </svg>
+      </div>
+      <div class="slide">
+        <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="1600" height="1000" fill="#2a1e1c"/>
+          <g fill="#3a2a28"><rect x="0" y="0" width="1600" height="420"/></g>
+          <g stroke="#493634" stroke-width="3"><path d="M0 140 H1600 M0 280 H1600"/></g>
+          <g fill="#5c3f3e"><path d="M300 420 q20 -160 0 -320 h40 q-20 160 0 320 Z"/><path d="M500 420 q20 -160 0 -320 h40 q-20 160 0 320 Z"/></g>
+          <path d="M760 1000 L760 640 Q760 520 820 470 Q880 520 880 640 L880 1000 Z" fill="#6a1f2b"/>
+          <path d="M760 640 Q760 560 820 520 Q880 560 880 640 Z" fill="#8e2b3a"/>
+          <path d="M1000 1000 V600 h80 V1000" fill="none" stroke="#e9e1d4" stroke-width="4" opacity=".6"/>
+          <path d="M1000 600 q40 -80 80 0" fill="none" stroke="#e9e1d4" stroke-width="4" opacity=".6"/>
+          <ellipse cx="820" cy="460" rx="300" ry="160" fill="#ffd89a" opacity=".08"/>
+        </svg>
+      </div>
+    </div>
+    <div class="main-logo">
+      <svg class="mark" viewBox="0 0 70 70" aria-hidden="true"><circle cx="35" cy="35" r="33" fill="none" stroke="#d5a06d"/><path d="M35 12 L40 30 L58 35 L40 40 L35 58 L30 40 L12 35 L30 30 Z" fill="#d5a06d"/></svg>
+      <h1>SORAÉ</h1>
+      <p>RESTAURANT FRANÇAIS — MINAMI</p>
+      <div class="line"></div>
+    </div>
+    <div class="pager" aria-hidden="true"><span></span><span></span><span></span></div>
+  </div>
+
+  <div id="contents">
+    <section id="concept">
+      <div class="ttl fade"><span class="en">Concept</span><h2>コンセプト</h2></div>
+      <div class="concept fade">
+        <h3>街の喧騒から、<br>ひと皿の静けさへ。</h3>
+        <p>ミナミの賑わいからほんの一本入った路地に、ひっそりと灯るレストラン。関西の旬の食材とフランス料理の技法を重ね、ここでしか出会えない一皿をお届けします。記念日の夜にも、大切な方との昼下がりにも。</p>
+      </div>
+    </section>
+
+    <div class="para" aria-hidden="true">
+      <div class="bg" data-speed="0.35">
+        <svg viewBox="0 0 1600 1200" preserveAspectRatio="xMidYMid slice"><rect width="1600" height="1200" fill="#362827"/><g fill="#5c3f3e"><circle cx="300" cy="400" r="220"/><circle cx="1300" cy="800" r="260"/></g><g fill="#8e2b3a" opacity=".9"><path d="M700 800 L760 520 h80 L900 800 Z"/></g><g fill="#d5a06d" opacity=".9"><rect x="790" y="420" width="20" height="100"/><path d="M760 520 h80 l-10 -20 h-60 Z"/></g><g fill="#ffd89a" opacity=".12"><circle cx="800" cy="600" r="380"/></g></svg>
+      </div>
+      <div class="copy"><div><span class="en">L'art de recevoir</span><small>もてなしという芸術</small></div></div>
+    </div>
+
+    <section id="cuisine" class="cuisine">
+      <div class="ttl fade"><span class="en">Cuisine</span><h2>お料理</h2></div>
+      <div class="course-grid">
+        <div class="course fade"><div class="pic"><svg viewBox="0 0 160 120"><ellipse cx="80" cy="66" rx="70" ry="40" fill="#fff"/><ellipse cx="80" cy="64" rx="40" ry="20" fill="#c97b52"/><g fill="#6f8f4f"><circle cx="64" cy="58" r="5"/><circle cx="96" cy="62" r="4"/></g><path d="M50 74 q30 10 60 0" stroke="#8e2b3a" stroke-width="3" fill="none"/></svg></div><div class="body"><span class="en">DÉJEUNER</span><h3>ランチコース</h3><div class="price">¥6,800〜</div><p>前菜・魚料理・肉料理・デザート</p></div></div>
+        <div class="course fade"><div class="pic"><svg viewBox="0 0 160 120"><ellipse cx="80" cy="66" rx="70" ry="40" fill="#fff"/><path d="M50 64 q30 -30 60 0 q-30 16 -60 0" fill="#8e5a3a"/><path d="M58 70 q22 10 44 0" stroke="#d5a06d" stroke-width="3" fill="none"/><g fill="#6f8f4f"><circle cx="70" cy="52" r="4"/><circle cx="92" cy="54" r="3"/></g></svg></div><div class="body"><span class="en">DÎNER</span><h3>ディナーコース</h3><div class="price">¥16,000〜</div><p>シェフおまかせ全8皿</p></div></div>
+        <div class="course fade"><div class="pic"><svg viewBox="0 0 160 120"><path d="M70 100 V60 l-20 -40 h60 l-20 40 V100" fill="none" stroke="#5c3f3e" stroke-width="3"/><path d="M52 24 h56 l-14 30 h-28 Z" fill="#8e2b3a" opacity=".85"/><rect x="58" y="98" width="44" height="4" fill="#5c3f3e"/></svg></div><div class="body"><span class="en">ANNIVERSAIRE</span><h3>記念日プラン</h3><div class="price">¥22,000〜</div><p>花束・メッセージプレート付き</p></div></div>
+      </div>
+    </section>
+
+    <div class="para" aria-hidden="true">
+      <div class="bg" data-speed="0.35">
+        <svg viewBox="0 0 1600 1200" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="night" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c1413"/><stop offset="1" stop-color="#5c3f3e"/></linearGradient></defs><rect width="1600" height="1200" fill="url(#night)"/><g fill="#241a19"><rect x="0" y="700" width="200" height="500"/><rect x="220" y="620" width="160" height="580"/><rect x="1240" y="640" width="160" height="560"/><rect x="1420" y="720" width="180" height="480"/></g><g fill="#ffd89a" opacity=".7"><circle cx="500" cy="760" r="6"/><circle cx="640" cy="720" r="6"/><circle cx="780" cy="700" r="6"/><circle cx="920" cy="720" r="6"/><circle cx="1060" cy="760" r="6"/></g><path d="M440 770 Q760 660 1120 770" stroke="#d5a06d" stroke-width="2" fill="none"/><g fill="#ffd89a" opacity=".1"><circle cx="780" cy="700" r="300"/></g></svg>
+      </div>
+      <div class="copy"><div><span class="en">Une nuit à Minami</span><small>ミナミの夜に、灯りをひとつ</small></div></div>
+    </div>
+
+    <section id="chef">
+      <div class="chef">
+        <div class="portrait fade"><svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice"><rect width="400" height="500" fill="#493634"/><circle cx="200" cy="190" r="70" fill="#d8b89a"/><path d="M130 150 q70 -90 140 0 q-10 -40 -70 -50 q-60 10 -70 50 Z" fill="#fff"/><rect x="140" y="110" width="120" height="50" rx="20" fill="#fff"/><path d="M90 500 q10 -200 110 -220 q100 20 110 220 Z" fill="#fff"/><path d="M200 300 V500" stroke="#e6dccd" stroke-width="3"/><g fill="#d5a06d"><circle cx="180" cy="340" r="5"/><circle cx="180" cy="390" r="5"/><circle cx="220" cy="340" r="5"/><circle cx="220" cy="390" r="5"/></g></svg></div>
+        <div class="fade">
+          <div class="ttl" style="text-align:left;margin-bottom:10px"><span class="en">Chef</span></div>
+          <h3><small>CHEF DE CUISINE</small>料理長　東雲 誠</h3>
+          <p>パリ、リヨンの星付きレストランで十年にわたり研鑽を積んだのち帰国。素材の声を聴き、引き算の美学で仕上げる一皿は、どこか日本の季節を感じさせます。</p>
+          <p>「ナイフを入れた瞬間の香りまで、記憶に残る料理を。」</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="reserve" class="reserve-sec">
+      <div class="ttl fade"><span class="en">Reservation</span><h2>ご予約</h2></div>
+      <div class="fade">
+        <p>ご予約・お問い合わせはお電話またはWEBにて承ります。</p>
+        <div class="tel">06-0000-0000</div>
+        <p style="font-size:12px">受付 11:00〜20:00（火曜定休）</p>
+        <div class="btns"><a class="btn fill" href="#">WEB予約はこちら</a><a class="btn" href="#">ギフト券のご購入</a></div>
+      </div>
+    </section>
+
+    <section id="access">
+      <div class="ttl fade"><span class="en">Access</span><h2>アクセス</h2></div>
+      <div class="access fade">
+        <dl>
+          <dt>住所</dt><dd>大阪府大阪市中央区〇〇 0-0-0（架空）</dd>
+          <dt>営業時間</dt><dd>LUNCH 12:00〜15:00 ／ DINNER 17:30〜22:00</dd>
+          <dt>定休日</dt><dd>火曜日</dd>
+          <dt>交通</dt><dd>地下鉄「なんば駅」より徒歩5分</dd>
+        </dl>
+        <div class="map"><svg viewBox="0 0 400 280" preserveAspectRatio="xMidYMid slice" aria-label="周辺地図のイメージ"><rect width="400" height="280" fill="#f4f0e9"/><path d="M0 160 H400 M240 0 V280 M80 0 L140 280" stroke="#fff" stroke-width="16"/><rect x="250" y="70" width="60" height="40" fill="#e6dccd"/><circle cx="270" cy="200" r="10" fill="#d5a06d"/><text x="286" y="205" font-family="Playfair Display, serif" font-size="13" fill="#362827">SORAÉ</text><text x="40" y="150" font-size="11" fill="#9d9291">なんば駅</text></svg></div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="logo">SORAÉ</div>
+    <nav class="sns" aria-label="SNS"><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 3h3.1l-6.8 7.7 8 10.3h-6.3l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.9 3h6.4l4.4 5.9L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg></a><a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg></a><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4a2.5 2.5 0 0 0-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg></a></nav>
+    &copy; Restaurant SORAÉ ／ このページはＹＫプランニングのデザインサンプルです。店舗・内容は架空のものです。
+  </footer>
+
+  <script>
+    (() => {
+      const header = document.querySelector('header');
+      const slidesWrap = document.querySelector('.slides');
+      const slides = [...document.querySelectorAll('.slide')];
+      const dots = [...document.querySelectorAll('.pager span')];
+      const logo = document.querySelector('.main-logo');
+      const pager = document.querySelector('.pager');
+      const contents = document.getElementById('contents');
+
+      // Opening sequence: slider fades in → logo (1s) → header & pager (1.8s)
+      let current = 0;
+      const show = (i) => {
+        slides.forEach((s, j) => s.classList.toggle('is-active', j === i));
+        dots.forEach((d, j) => d.classList.toggle('on', j === i));
+        current = i;
+      };
+      show(0);
+      requestAnimationFrame(() => slidesWrap.classList.add('is-ready'));
+      setTimeout(() => logo.classList.add('is-ready'), 1000);
+      setTimeout(() => { header.classList.add('is-ready'); pager.classList.add('is-ready'); }, 1800);
+      setInterval(() => show((current + 1) % slides.length), 6000);
+
+      // Sticky header: once past the hero, the bar drops in from the top; scrolling back hides it
+      let sticky = false;
+      const onScroll = () => {
+        const past = scrollY >= contents.offsetTop - 1;
+        if (past && !sticky) {
+          sticky = true;
+          header.classList.add('scl');
+          requestAnimationFrame(() => requestAnimationFrame(() => header.classList.add('show')));
+        } else if (!past && sticky) {
+          sticky = false;
+          header.classList.remove('show');
+          setTimeout(() => { if (!sticky) header.classList.remove('scl'); }, 480);
+        }
+      };
+
+      // Parallax bands
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const layers = [...document.querySelectorAll('.para .bg')];
+      const parallax = () => {
+        if (reduce) return;
+        const vh = innerHeight;
+        layers.forEach((el) => {
+          const r = el.parentElement.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > vh) return;
+          const offset = r.top + r.height / 2 - vh / 2;
+          el.style.transform = `translate3d(0, ${(-offset * parseFloat(el.dataset.speed)).toFixed(1)}px, 0)`;
+        });
+      };
+
+      let ticking = false;
+      addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { onScroll(); parallax(); ticking = false; });
+      }, { passive: true });
+      onScroll(); parallax();
+
+      // Fade-in on scroll
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const sib = [...e.target.parentElement.children].filter((c) => c.classList.contains('fade'));
+          e.target.style.transitionDelay = `${Math.max(0, sib.indexOf(e.target)) * 0.15}s`;
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.fade').forEach((el) => io.observe(el));
+    })();
+  </script>
+
+</body>
+</html>
